@@ -11,5 +11,4 @@ curl -sSL https://install.python-poetry.org | POETRY_HOME=$(pwd)/.lib/poetry pyt
 $(pwd)/.lib/poetry/bin/poetry install
 
 # Install client dependencies
-cd client
 npm ci --prefix client
