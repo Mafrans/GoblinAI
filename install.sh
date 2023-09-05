@@ -8,4 +8,4 @@ git checkout dev
 curl -sSL https://install.python-poetry.org | POETRY_HOME=$(pwd)/.lib/poetry python3 -
 
 # Install GoblinAI dependencies
-./lib/poetry/bin/poetry install
+$(pwd)/.lib/poetry/bin/poetry install
