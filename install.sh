@@ -5,11 +5,7 @@ git pull origin dev
 git checkout dev
 
 # Install PythonPoetry if it doesn't already exist
-if ! type "poetry" > /dev/null; then
-  curl -sSL https://install.python-poetry.org | POETRY_HOME=$(pwd)/.lib/poetry python3 -
-  export PATH=$HOME/.local/bin:$PATH
-  hash -r
-fi
+curl -sSL https://install.python-poetry.org | POETRY_HOME=$(pwd)/.lib/poetry python3 -
 
 # Install GoblinAI dependencies
-poetry install
+./lib/poetry/bin/poetry install
