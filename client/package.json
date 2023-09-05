@@ -1,0 +1,14 @@
+{
+  "name": "goblinai",
+  "version": "0.1.0",
+  "main": "index.js",
+  "repository": "https://github.com/Mafrans/GoblinAI",
+  "author": "Mafrans",
+  "license": "MIT",
+  "devDependencies": {
+    "vite": "^4.4.9"
+  },
+  "scripts": {
+    "start": "vite"
+  }
+}
