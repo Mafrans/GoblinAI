@@ -12,4 +12,4 @@ export PATH="$HOME/.local/bin:$PATH"
 poetry install
 
 # Install client dependencies
-npm ci --prefix client
+npm i --prefix client
