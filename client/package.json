@@ -1,14 +1,20 @@
 {
-  "name": "goblinai",
-  "version": "0.1.0",
-  "main": "index.js",
-  "repository": "https://github.com/Mafrans/GoblinAI",
-  "author": "Mafrans",
-  "license": "MIT",
-  "devDependencies": {
-    "vite": "^4.4.9"
-  },
+  "name": "client",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
   "scripts": {
-    "start": "vite"
+    "start": "vite",
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "solid-js": "^1.7.8"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.2",
+    "vite": "^4.4.5",
+    "vite-plugin-solid": "^2.7.0"
   }
 }
