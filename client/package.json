@@ -4,12 +4,15 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "start": "vite && tmole 5173",
+    "start": "run-p start:*",
+    "start:start": "vite",
+    "start:publish": "tmole 5173",
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview"
   },
   "dependencies": {
+    "npm-run-all": "^4.1.5",
     "solid-js": "^1.7.8",
     "tunnelmole": "^2.1.12"
   },
