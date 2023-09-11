@@ -10,10 +10,9 @@ def start(mode: str, ngrokToken: str):
         # Let the API server handle serving the client
         client.buildClient()
 
-    if (ngrokToken):
-        ngrokTunnel(8080, ngrokToken)
-
     server.start()
 
-def ngrokTunnel(port: int, token: str):
-    ngrok.connect(port, authtoken=token)
+    # Tunnel after starting the server to ensure the 
+    # start message is correct
+    if (ngrokToken != ""):
+        server.tunnel(ngrokToken)
