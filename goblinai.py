@@ -12,7 +12,5 @@ def start(mode: str, ngrokToken: str):
 
     server.start()
 
-    # Tunnel after starting the server to ensure the 
-    # start message is correct
     if (ngrokToken != ""):
         server.tunnel(ngrokToken)
