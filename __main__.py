@@ -1,4 +1,13 @@
 import goblinai
+import argparse
+
+argParser = argparse.ArgumentParser()
+argParser.add_argument("-m", "--mode", type=str, default="production")
+argParser.add_argument("-D", "--dev", action="store_true")
+
+args = argParser.parse_args();
 
 if __name__ == '__main__':  
-    goblinai.start()
+    goblinai.start(
+        mode="development" if args.dev else args.mode
+    )
