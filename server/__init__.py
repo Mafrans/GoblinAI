@@ -2,7 +2,6 @@ from multiprocessing import Process
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
 from pathlib import Path
-from IPython.display import clear_output 
 import ngrok
 import uvicorn
 
@@ -21,13 +20,9 @@ def start():
 
     Process(target=lambda:uvicorn.run(app, port=port, log_level="error")).start()
 
-    print("\033c", end='')
-    clear_output()
     print(f"GoblinAI running on https://localhost:8000")
 
 def tunnel(token: str):
     tunnel = ngrok.connect(port, authtoken=token)
     
-    print("\033c", end='')
-    clear_output()
     print(f"GoblinAI running on {tunnel.url()}")
