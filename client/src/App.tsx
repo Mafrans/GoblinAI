@@ -1,13 +1,14 @@
 import "./App.css";
-import { useAPIRequest } from "./hooks/useAPIRequest";
+import { DevModeIndicator } from "./components/DevModeIndicator";
+import { useAPI } from "./hooks/useAPI";
 
 function App() {
-  const { data } = useAPIRequest<{ text: string }>("");
+  const { data } = useAPI<{ text: string }>("");
 
   return (
     <>
+      <DevModeIndicator />
       <div>
-        {import.meta.env.DEV ? <small>Dev mode</small> : null}
         <p>{data()?.text ?? "Loading..."}</p>
       </div>
     </>
