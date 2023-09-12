@@ -1,16 +1,15 @@
+import { Route, Routes } from "@solidjs/router";
 import "./App.css";
 import { DevModeIndicator } from "./components/DevModeIndicator";
-import { useAPI } from "./hooks/useAPI";
+import { HomeView } from "./views/HomeView";
 
 function App() {
-  const { data } = useAPI<{ text: string }>("");
-
   return (
     <>
       <DevModeIndicator />
-      <div>
-        <p>{data()?.text ?? "Loading..."}</p>
-      </div>
+      <Routes>
+        <Route path="/" component={HomeView} />
+      </Routes>
     </>
   );
 }
