@@ -20,7 +20,7 @@ def start():
 
     Process(target=lambda:uvicorn.run(app, port=port, log_level="error")).start()
 
-    print(f"GoblinAI running on https://localhost:8000")
+    print(f"GoblinAI running on http://localhost:8000")
 
 def tunnel(token: str):
     tunnel = ngrok.connect(port, authtoken=token)

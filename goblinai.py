@@ -10,5 +10,5 @@ def start(mode: str, ngrokToken: str):
 
     server.start()
 
-    if (ngrokToken != ""):
+    if (ngrokToken != None):
         server.tunnel(ngrokToken)
