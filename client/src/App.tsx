@@ -1,19 +1,13 @@
-import { createEffect, createSignal } from "solid-js";
 import "./App.css";
+import { useAPIRequest } from "./hooks/useAPIRequest";
 
 function App() {
-  const [text, setText] = createSignal<string>();
-
-  createEffect(async () => {
-    const res = await fetch("http://localhost:8000/api");
-    const { text } = await res.json();
-    setText(text);
-  });
+  const { data } = useAPIRequest<{ text: string }>("");
 
   return (
     <>
       <div>
-        <p>{text() ?? "Loading..."}</p>
+        <p>{data()?.text ?? "Loading..."}</p>
       </div>
     </>
   );
