@@ -7,6 +7,7 @@ function App() {
   return (
     <>
       <div>
+        {import.meta.env.DEV ? <small>Dev mode</small> : null}
         <p>{data()?.text ?? "Loading..."}</p>
       </div>
     </>
