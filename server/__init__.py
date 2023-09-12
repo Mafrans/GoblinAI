@@ -1,6 +1,7 @@
 from multiprocessing import Process
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
+from fastapi.middleware.cors import CORSMiddleware
 from pathlib import Path
 import ngrok
 import uvicorn
@@ -8,9 +9,20 @@ import uvicorn
 port = 8000
 app = FastAPI()
 
+corsMethods = ["get"]
+corsHeaders = ["*"]
+
+app.add_middleware(CORSMiddleware,
+    allow_origins=[f"http://localhost:5173"],
+    allow_methods=corsMethods,
+    allow_headers=corsHeaders,
+)
+
 @app.get("/api")
 def get_root():
-    return "Hello world!"
+    return {
+        "text": "Hello world!"
+    }
 
 def start():
     clientPath = Path(__file__).parents[1].joinpath("client/dist")
@@ -24,5 +36,11 @@ def start():
 
 def tunnel(token: str):
     tunnel = ngrok.connect(port, authtoken=token)
+
+    app.add_middleware(CORSMiddleware,
+        allow_origins=[tunnel.url()],
+        cors_methods=corsMethods,
+        cors_headers=corsHeaders
+    )
     
     print(f"GoblinAI running on {tunnel.url()}")
