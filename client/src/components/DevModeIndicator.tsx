@@ -1,6 +1,8 @@
 import style from "./DevModeIndicator.module.css";
 
-export function DevModeIndicator() {
+type DevModeIndicatorProps = {};
+
+export function DevModeIndicator({}: DevModeIndicatorProps) {
   if (!import.meta.env.DEV) {
     return null;
   }
