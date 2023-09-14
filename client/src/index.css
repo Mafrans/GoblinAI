@@ -90,6 +90,7 @@ body {
   &:focus {
     outline: 3px solid var(--color-focus-outline);
     outline-offset: var(--space-xs);
+    border-radius: var(--rounded);
   }
 }
 
