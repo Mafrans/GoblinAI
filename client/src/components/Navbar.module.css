@@ -1,6 +1,6 @@
 .navbar {
   background: var(--color-panel-half);
-  padding: var(--space-lg);
+  padding: var(--space-lg) 0;
   font: var(--font-body-lg);
 }
 

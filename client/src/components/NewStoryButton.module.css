@@ -3,7 +3,7 @@
   align-items: center;
   justify-content: center;
   gap: var(--space-md);
-  padding: var(--space-xl);
+  padding: var(--space-xl) var(--space-md);
   border-radius: var(--rounded);
   cursor: pointer;
   color: var(--color-on-background-muted);
