@@ -4,6 +4,7 @@
   background: var(--color-panel);
   cursor: pointer;
   transition: background var(--ease-out);
+  border-left: var(--space-md) solid var(--color-accent);
 
   &:hover {
     background: var(--color-panel-double);

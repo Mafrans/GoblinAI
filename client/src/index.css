@@ -52,6 +52,7 @@
 * {
   /* Background colors */
   --color-background: rgb(var(--cs-background));
+  --color-accent: rgb(var(--cs-accent));
 
   /* Text colors */
   --color-on-background: rgb(var(--cs-on-background));
