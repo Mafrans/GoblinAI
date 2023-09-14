@@ -5,4 +5,4 @@ type StoriesResponse = {
   stories: Story[];
 };
 
-export const useStories = () => useAPI<StoriesResponse>("/stories");
+export const useStories = () => useAPI<StoriesResponse>("/stories/");

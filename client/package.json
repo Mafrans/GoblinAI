@@ -13,15 +13,16 @@
     "@solidjs/router": "^0.8.3",
     "clsx": "^2.0.0",
     "dayjs": "^1.11.9",
-    "postcss-easings": "^4.0.0",
     "rfs": "^10.0.0",
     "solid-icons": "^1.0.12",
-    "solid-js": "^1.7.8",
-    "vite-plugin-solid-svg": "^0.6.4"
+    "solid-js": "^1.7.8"
   },
   "devDependencies": {
+    "postcss-mixins": "^9.0.4",
     "typescript": "^5.0.2",
     "vite": "^4.4.5",
-    "vite-plugin-solid": "^2.7.0"
+    "vite-plugin-solid": "^2.7.0",
+    "postcss-easings": "^4.0.0",
+    "vite-plugin-solid-svg": "^0.6.4"
   }
 }

@@ -1,0 +1,37 @@
+.themeSelect {
+  position: relative;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  color: var(--color-on-background);
+}
+
+.sun {
+  position: absolute;
+  inset: 0;
+
+  opacity: 0%;
+  transform: rotate(-30deg);
+  transition: all var(--ease-out);
+}
+
+.moon {
+  position: absolute;
+  inset: 0;
+
+  opacity: 100%;
+  transform: rotate(0deg);
+  transition: all var(--ease-out);
+}
+
+.lightMode {
+  & .sun {
+    opacity: 100%;
+    transform: rotate(0deg);
+  }
+
+  & .moon {
+    opacity: 0%;
+    transform: rotate(30deg);
+  }
+}

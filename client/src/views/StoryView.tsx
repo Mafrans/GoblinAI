@@ -9,5 +9,5 @@ type StoryViewParams = {
 export function StoryView() {
   const { id } = useParams<StoryViewParams>();
 
-  return <Layout class={style.story}></Layout>;
+  return <Layout class={style.story}>{id}</Layout>;
 }

@@ -1,5 +1,5 @@
 :root {
-  color-scheme: light dark;
+  color-scheme: dark light;
 
   --font-sans: "Inter", sans-serif;
   --font-display: "Inter", sans-serif;
@@ -31,22 +31,30 @@
   --ease-out: var(--duration, 0.125s) easeOutCubic;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    --cs-background: 240 240 240;
-    --cs-on-background: 30 30 40;
-    --cs-accent: 96 165 250;
-    --cs-panel: 0 0 20;
+@define-mixin theme $name {
+  @media (prefers-color-scheme: $(name)) {
+    :root {
+      @mixin-content;
+    }
+  }
+
+  [theme="$(name)"] {
+    @mixin-content;
   }
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --cs-background: 30 30 40;
-    --cs-on-background: 240 240 240;
-    --cs-accent: 99 102 241;
-    --cs-panel: 255 255 255;
-  }
+@mixin theme light {
+  --cs-background: 240 240 240;
+  --cs-on-background: 30 30 40;
+  --cs-accent: 96 165 250;
+  --cs-panel: 0 0 20;
+}
+
+@mixin theme dark {
+  --cs-background: 30 30 40;
+  --cs-on-background: 240 240 240;
+  --cs-accent: 99 102 241;
+  --cs-panel: 230 230 255;
 }
 
 * {
