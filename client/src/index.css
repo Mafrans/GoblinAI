@@ -35,7 +35,7 @@
   :root {
     --cs-background: 240 240 240;
     --cs-on-background: 30 30 40;
-    --cs-focus-outline: 129 140 248;
+    --cs-accent: 96 165 250;
     --cs-panel: 0 0 20;
   }
 }
@@ -44,7 +44,7 @@
   :root {
     --cs-background: 30 30 40;
     --cs-on-background: 240 240 240;
-    --cs-focus-outline: 99 102 241;
+    --cs-accent: 99 102 241;
     --cs-panel: 255 255 255;
   }
 }
@@ -65,7 +65,7 @@
   --color-panel-triple: rgb(var(--cs-panel) / 15%);
 
   /* Misc colors */
-  --color-focus-outline: rgb(var(--cs-focus-outline) / 40%);
+  --color-focus-outline: rgb(var(--cs-accent) / 50%);
 }
 
 :root {
@@ -84,6 +84,7 @@ body {
 }
 
 * {
+  appearance: none;
   margin: 0;
   padding: 0;
 
@@ -92,6 +93,11 @@ body {
     outline-offset: var(--space-xs);
     border-radius: var(--rounded);
   }
+}
+
+button {
+  border: none;
+  background: none;
 }
 
 .headline-1 {

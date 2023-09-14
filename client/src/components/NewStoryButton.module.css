@@ -1,0 +1,18 @@
+.newStoryButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-md);
+  padding: var(--space-xl);
+  border-radius: var(--rounded);
+  cursor: pointer;
+  color: var(--color-on-background-muted);
+  border: 2px solid var(--color-on-background-subtle);
+  font: var(--font-body-lg);
+  transition: background var(--ease-out), border var(--ease-out);
+
+  &:hover {
+    background: var(--color-panel-half);
+    color: var(--color-on-background);
+  }
+}
