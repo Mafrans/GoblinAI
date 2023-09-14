@@ -2,11 +2,13 @@ import { createEffect, createSignal } from "solid-js";
 
 let baseUrl = import.meta.env.DEV ? "http://localhost:8000" : location.origin;
 
-export const useAPI = <T = unknown>(key: string) => {
+export const useAPI = <T = unknown>(key: string, then?: (data: T) => void) => {
   const [data, setData] = createSignal<T>();
 
   createEffect(async () => {
-    setData<T>(await fetcher(key));
+    const newData = await fetcher(key);
+    setData<T>(newData);
+    then?.(newData);
   });
 
   return { data };

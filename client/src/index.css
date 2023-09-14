@@ -1,9 +1,62 @@
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  color-scheme: light dark;
+
+  --font-sans: "Inter", sans-serif;
+  --font-display: "Inter", sans-serif;
+
+  --font-headline-1: rfs(700 4rem / 1.2 var(--font-display));
+  --font-headline-2: rfs(700 2.75rem / 1.2 var(--font-display));
+  --font-headline-3: rfs(700 1.25rem / 1.2 var(--font-display));
+  --font-headline-4: 700 0.8125rem / 1.6 var(--font-display);
+  --font-body-lg: 1.125rem / 1.5 var(--font-sans);
+  --font-body: 0.9375rem / 1.5 var(--font-sans);
+  --font-body-sm: 0.75rem / 1.5 var(--font-sans);
+  --font-body-xs: 0.625rem / 1.5 var(--font-sans);
+  --font-button: 700 0.875rem / 1 var(--font-display);
+  --font-label: 600 0.75rem / 1.4 var(--font-sans);
+
+  --space-xs: 0.1875rem;
+  --space-sm: calc(2 * var(--space-xs));
+  --space-md: calc(2 * var(--space-sm));
+  --space-lg: calc(2 * var(--space-md));
+  --space-xl: calc(2 * var(--space-lg));
+  --space-2xl: calc(2 * var(--space-xl));
+  --space-3xl: calc(2 * var(--space-2xl));
+
+  --shadow: 0 0 8px rgba(0, 0, 0, 0.15);
+
+  --rounded: 7px;
+  --rounded-sm: 2px;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --cs-background: 240 240 240;
+    --cs-on-background: 30 30 40;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --cs-background: 30 30 40;
+    --cs-on-background: 240 240 240;
+  }
+}
+
+* {
+  /* Background colors */
+  --color-background: rgb(var(--cs-background));
+
+  /* Text colors */
+  --color-on-background: rgb(var(--cs-on-background));
+  --color-on-background-muted: rgb(var(--cs-on-background) / 60);
+  --color-on-background-subtle: rgb(var(--cs-on-background) / 20);
+}
+
+:root {
+  font-family: var(--font-sans), system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-
-  color-scheme: light dark;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -12,7 +65,28 @@
   -webkit-text-size-adjust: 100%;
 }
 
+body {
+  background: var(--color-background);
+  color: var(--color-on-background);
+}
+
 * {
   margin: 0;
   padding: 0;
+}
+
+.headline-1 {
+  font: var(--font-headline-1);
+}
+
+.headline-2 {
+  font: var(--font-headline-2);
+}
+
+.headline-3 {
+  font: var(--font-headline-3);
+}
+
+.headline-4 {
+  font: var(--font-headline-4);
 }
