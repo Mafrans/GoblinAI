@@ -27,12 +27,15 @@
 
   --rounded: 7px;
   --rounded-sm: 2px;
+
+  --ease-out: var(--duration, 0.125s) easeOutCubic;
 }
 
 @media (prefers-color-scheme: light) {
   :root {
     --cs-background: 240 240 240;
     --cs-on-background: 30 30 40;
+    --cs-focus-outline: 129 140 248;
     --cs-panel: 0 0 0;
   }
 }
@@ -41,6 +44,7 @@
   :root {
     --cs-background: 30 30 40;
     --cs-on-background: 240 240 240;
+    --cs-focus-outline: 99 102 241;
     --cs-panel: 255 255 255;
   }
 }
@@ -59,6 +63,9 @@
   --color-panel-10: rgb(var(--cs-panel) / 10%);
   --color-panel-15: rgb(var(--cs-panel) / 15%);
   --color-panel-30: rgb(var(--cs-panel) / 30%);
+
+  /* Misc colors */
+  --color-focus-outline: rgb(var(--cs-focus-outline) / 40%);
 }
 
 :root {
@@ -81,20 +88,35 @@ body {
 * {
   margin: 0;
   padding: 0;
+  font: var(--font-body);
+
+  &:focus {
+    outline: 3px solid var(--color-focus-outline);
+    outline-offset: var(--space-xs);
+  }
 }
 
 .headline-1 {
   font: var(--font-headline-1);
+  margin-bottom: var(--space-lg);
 }
 
 .headline-2 {
   font: var(--font-headline-2);
+  margin-bottom: var(--space-lg);
 }
 
 .headline-3 {
   font: var(--font-headline-3);
+  margin-bottom: var(--space-sm);
 }
 
 .headline-4 {
   font: var(--font-headline-4);
+  margin-bottom: var(--space-sm);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
 }

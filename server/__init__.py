@@ -1,13 +1,18 @@
 from multiprocessing import Process
+from faker import Faker
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
 from pathlib import Path
+
+from shortuuid import ShortUUID
+from server.api.stories import stories
 import ngrok
 import uvicorn
 
 port = 8000
 app = FastAPI()
+faker = Faker()
 
 corsMethods = ["get"]
 corsHeaders = ["*"]
@@ -19,10 +24,7 @@ app.add_middleware(
     allow_headers=corsHeaders,
 )
 
-
-@app.get("/api")
-def get_root():
-    return {"text": "Hello world!"}
+app.include_router(stories)
 
 
 def start(mode: str):

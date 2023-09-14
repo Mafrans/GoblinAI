@@ -14,6 +14,8 @@ uvicorn = "^0.23.2"
 ngrok = "^0.9.0"
 watchfiles = "^0.20.0"
 argcomplete = "^3.1.1"
+faker = "^19.6.1"
+shortuuid = "^1.0.11"
 
 
 [build-system]
