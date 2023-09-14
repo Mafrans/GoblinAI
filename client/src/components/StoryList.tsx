@@ -1,6 +1,4 @@
 import { For } from "solid-js";
-import { useAPI } from "../hooks/useAPI";
-import { Story } from "../types/Story";
 import { Loader } from "./Loader";
 import { StoryListItem } from "./StoryListItem";
 import style from "./StoryList.module.css";

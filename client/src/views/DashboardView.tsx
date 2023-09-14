@@ -1,11 +1,12 @@
 import { Container } from "../components/Container";
 import { StoryList } from "../components/StoryList";
+import { Layout } from "../layouts/Layout";
 import style from "./DashboardView.module.css";
 
 export function DashboardView() {
   return (
-    <div class={style.dashboard}>
-      <Container as="header">
+    <Layout class={style.dashboard}>
+      <Container as="header" class={style.header}>
         <h1 class="headline-1">Welcome to GoblinAI</h1>
         <p>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse nihil
@@ -14,12 +15,12 @@ export function DashboardView() {
         </p>
       </Container>
 
-      <main>
+      <main class={style.content}>
         <Container>
           <h2 class="headline-2">Your stories</h2>
           <StoryList />
         </Container>
       </main>
-    </div>
+    </Layout>
   );
 }

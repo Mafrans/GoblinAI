@@ -1,0 +1,17 @@
+.navbar {
+  background: var(--color-panel-half);
+  padding: var(--space-lg);
+  font: var(--font-body-lg);
+}
+
+.content {
+  display: flex;
+  align-items: center;
+  gap: var(--space-lg);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+}

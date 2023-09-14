@@ -1,11 +1,11 @@
 .storyListItem {
   padding: var(--space-lg);
   border-radius: var(--rounded);
-  background: var(--color-panel-5);
+  background: var(--color-panel);
   cursor: pointer;
   transition: background var(--ease-out);
 
   &:hover {
-    background: var(--color-panel-10);
+    background: var(--color-panel-double);
   }
 }
