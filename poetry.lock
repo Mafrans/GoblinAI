@@ -33,6 +33,20 @@ test = ["anyio[trio]", "coverage[toml] (>=4.5)", "hypothesis (>=4.0)", "mock (>=
 trio = ["trio (<0.22)"]
 
 [[package]]
+name = "argcomplete"
+version = "3.1.1"
+description = "Bash tab completion for argparse"
+optional = false
+python-versions = ">=3.6"
+files = [
+    {file = "argcomplete-3.1.1-py3-none-any.whl", hash = "sha256:35fa893a88deea85ea7b20d241100e64516d6af6d7b0ae2bed1d263d26f70948"},
+    {file = "argcomplete-3.1.1.tar.gz", hash = "sha256:6c4c563f14f01440aaffa3eae13441c5db2357b5eec639abe7c0b15334627dff"},
+]
+
+[package.extras]
+test = ["coverage", "mypy", "pexpect", "ruff", "wheel"]
+
+[[package]]
 name = "certifi"
 version = "2023.7.22"
 description = "Python package for providing Mozilla's CA Bundle."
@@ -1005,4 +1019,4 @@ anyio = ">=3.0.0"
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10"
-content-hash = "9702c27ceebc388ce6e8cbc61ed4ada0e6ee3a9722f28d7d4d70d5de91a8c153"
+content-hash = "e428cf73d1b670a14e725daedb9438146353623157fed946dc29125742be0ee0"
