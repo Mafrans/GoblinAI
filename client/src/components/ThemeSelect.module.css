@@ -4,34 +4,35 @@
   height: 20px;
   cursor: pointer;
   color: var(--color-on-background);
+
+  &:global(.theme-dark) {
+    & .sun {
+      opacity: 0%;
+      transform: rotate(-30deg);
+    }
+
+    & .moon {
+      opacity: 100%;
+      transform: rotate(0deg);
+    }
+  }
+
+  &:global(.theme-light) {
+    & .sun {
+      opacity: 100%;
+      transform: rotate(0deg);
+    }
+
+    & .moon {
+      opacity: 0%;
+      transform: rotate(30deg);
+    }
+  }
 }
 
-.sun {
-  position: absolute;
-  inset: 0;
-
-  opacity: 0%;
-  transform: rotate(-30deg);
-  transition: all var(--ease-out);
-}
-
+.sun,
 .moon {
   position: absolute;
   inset: 0;
-
-  opacity: 100%;
-  transform: rotate(0deg);
   transition: all var(--ease-out);
-}
-
-.lightMode {
-  & .sun {
-    opacity: 100%;
-    transform: rotate(0deg);
-  }
-
-  & .moon {
-    opacity: 0%;
-    transform: rotate(30deg);
-  }
 }

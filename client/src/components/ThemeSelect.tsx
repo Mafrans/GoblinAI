@@ -1,5 +1,5 @@
 import { HiSolidMoon, HiSolidSun } from "solid-icons/hi";
-import { createEffect, createSignal } from "solid-js";
+import { createEffect, createMemo, createSignal } from "solid-js";
 import style from "./ThemeSelect.module.css";
 import clsx from "clsx";
 
@@ -8,24 +8,29 @@ type ThemeSelectProps = {};
 const prefersLightMode = matchMedia("(prefers-color-scheme: light)");
 
 export function ThemeSelect({}: ThemeSelectProps) {
-  const [lightMode, setLightMode] = createSignal(prefersLightMode.matches);
-
-  createEffect(() =>
-    document.body.setAttribute("theme", lightMode() ? "light" : "dark")
+  const [selectedTheme, setSelectedTheme] = createSignal(
+    localStorage.getItem("theme")
   );
+  const [preferredTheme, setPreferredTheme] = createSignal(
+    prefersLightMode.matches ? "light" : "dark"
+  );
+  const theme = createMemo(() => selectedTheme() ?? preferredTheme());
+  createEffect(() => document.body.setAttribute("theme", theme()));
 
   prefersLightMode.addEventListener("change", ({ matches }) =>
-    setLightMode(matches)
+    setPreferredTheme(matches ? "light" : "dark")
   );
 
   function handleClick() {
-    setLightMode(!lightMode());
+    const nextTheme = theme() === "dark" ? "light" : "dark";
+    setSelectedTheme(nextTheme);
+    localStorage.setItem("theme", nextTheme);
   }
 
   return (
     <button
       onClick={handleClick}
-      class={clsx(style.themeSelect, lightMode() && style.lightMode)}
+      class={clsx(style.themeSelect, `theme-${theme()}`)}
     >
       <HiSolidSun class={style.sun} size={20} />
       <HiSolidMoon class={style.moon} size={20} />
