@@ -33,6 +33,7 @@
   :root {
     --cs-background: 240 240 240;
     --cs-on-background: 30 30 40;
+    --cs-panel: 0 0 0;
   }
 }
 
@@ -40,6 +41,7 @@
   :root {
     --cs-background: 30 30 40;
     --cs-on-background: 240 240 240;
+    --cs-panel: 255 255 255;
   }
 }
 
@@ -49,8 +51,14 @@
 
   /* Text colors */
   --color-on-background: rgb(var(--cs-on-background));
-  --color-on-background-muted: rgb(var(--cs-on-background) / 60);
-  --color-on-background-subtle: rgb(var(--cs-on-background) / 20);
+  --color-on-background-muted: rgb(var(--cs-on-background) / 60%);
+  --color-on-background-subtle: rgb(var(--cs-on-background) / 20%);
+
+  /* Panel colors */
+  --color-panel-5: rgb(var(--cs-panel) / 5%);
+  --color-panel-10: rgb(var(--cs-panel) / 10%);
+  --color-panel-15: rgb(var(--cs-panel) / 15%);
+  --color-panel-30: rgb(var(--cs-panel) / 30%);
 }
 
 :root {

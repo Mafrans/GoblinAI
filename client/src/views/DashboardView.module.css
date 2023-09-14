@@ -1,0 +1,15 @@
+.dashboard {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+
+  & header {
+    padding: var(--space-2xl) 0;
+  }
+
+  & main {
+    padding: var(--space-xl) 0;
+    background: var(--color-panel-5);
+    flex: 1;
+  }
+}
