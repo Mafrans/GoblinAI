@@ -1,5 +1,9 @@
 .container {
   max-width: 1024px;
-  padding: rfs(0 2rem);
   margin: 0 auto;
+}
+
+.container.hasPadding {
+  padding-left: rfs(2rem);
+  padding-right: rfs(2rem);
 }

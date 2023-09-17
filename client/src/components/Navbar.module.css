@@ -1,13 +1,16 @@
 .navbar {
+  display: flex;
+  align-items: center;
   background: var(--color-panel-half);
-  padding: var(--space-lg) 0;
+  height: 60px;
+  padding: 0 var(--space-xl);
   font: var(--font-body-lg);
 }
 
 .content {
   display: flex;
+  width: 100%;
   align-items: center;
-  justify-content: space-between;
   gap: var(--space-lg);
 }
 
@@ -15,4 +18,42 @@
   display: flex;
   align-items: center;
   gap: var(--space-md);
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--rounded);
+  transition: background var(--ease-out);
+
+  &:hover,
+  &:focus {
+    background: var(--color-panel);
+  }
+}
+
+.links {
+  display: flex;
+  flex: 1;
+  gap: var(--space-md);
+
+  & > a {
+    font: var(--font-button);
+    padding: var(--space-md) var(--space-lg);
+    border-radius: var(--rounded);
+    background: transparent;
+    transition: background var(--ease-out);
+
+    &:hover,
+    &:focus {
+      background: var(--color-panel);
+    }
+
+    &:global(.active) {
+      background: var(--color-accent);
+      color: var(--color-on-accent);
+    }
+  }
+}
+
+.buttons {
+  display: flex;
+  gap: var(--space-md);
+  margin-left: auto;
 }

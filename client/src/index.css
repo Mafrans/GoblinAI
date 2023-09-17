@@ -47,6 +47,7 @@
   --cs-background: 240 240 240;
   --cs-on-background: 30 30 40;
   --cs-accent: 96 165 250;
+  --cs-on-accent: 240 240 240;
   --cs-panel: 0 0 20;
 }
 
@@ -54,6 +55,7 @@
   --cs-background: 30 30 40;
   --cs-on-background: 240 240 240;
   --cs-accent: 99 102 241;
+  --cs-on-accent: 240 240 240;
   --cs-panel: 230 230 255;
 }
 
@@ -66,6 +68,10 @@
   --color-on-background: rgb(var(--cs-on-background));
   --color-on-background-muted: rgb(var(--cs-on-background) / 60%);
   --color-on-background-subtle: rgb(var(--cs-on-background) / 20%);
+
+  --color-on-accent: rgb(var(--cs-on-accent));
+  --color-on-accent-muted: rgb(var(--cs-on-accent) / 60%);
+  --color-on-accent-subtle: rgb(var(--cs-on-accent) / 20%);
 
   /* Panel colors */
   --color-panel-half: rgb(var(--cs-panel) / 2.5%);
@@ -96,6 +102,7 @@ body {
   appearance: none;
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 
   &:focus {
     outline: 3px solid var(--color-focus-outline);

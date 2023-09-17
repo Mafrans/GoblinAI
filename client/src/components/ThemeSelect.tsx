@@ -3,11 +3,13 @@ import { createEffect, createMemo, createSignal } from "solid-js";
 import style from "./ThemeSelect.module.css";
 import clsx from "clsx";
 
-type ThemeSelectProps = {};
+type ThemeSelectProps = {
+  class?: string;
+};
 
 const prefersLightMode = matchMedia("(prefers-color-scheme: light)");
 
-export function ThemeSelect({}: ThemeSelectProps) {
+export function ThemeSelect({ class: className }: ThemeSelectProps) {
   const [selectedTheme, setSelectedTheme] = createSignal(
     localStorage.getItem("theme")
   );
@@ -30,7 +32,7 @@ export function ThemeSelect({}: ThemeSelectProps) {
   return (
     <button
       onClick={handleClick}
-      class={clsx(style.themeSelect, `theme-${theme()}`)}
+      class={clsx(className, style.themeSelect, `theme-${theme()}`)}
     >
       <HiSolidSun class={style.sun} size={20} />
       <HiSolidMoon class={style.moon} size={20} />
