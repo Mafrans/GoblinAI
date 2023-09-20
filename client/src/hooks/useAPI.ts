@@ -1,18 +1,21 @@
-import { createEffect, createSignal } from "solid-js";
+import { createResource } from "solid-js";
 
 let baseUrl = import.meta.env.DEV ? "http://localhost:8000" : location.origin;
 
-export const useAPI = <T = unknown>(key: string, then?: (data: T) => void) => {
-  const [data, setData] = createSignal<T>();
-
-  createEffect(async () => {
-    const newData = await fetcher(key);
-    setData<T>(newData);
-    then?.(newData);
-  });
-
-  return { data };
+type FetchOptions<T = object> = Omit<RequestInit, "body"> & {
+  body?: T;
 };
 
-const fetcher = (key: string) =>
-  fetch(`${baseUrl}/api${key}`).then((b) => b.json());
+export const createAPIResource = <Output = unknown>(
+  key: string,
+  options?: FetchOptions
+) => createResource<Output>(() => apiFetch<Output>(key, options));
+
+export const apiFetch = <Output, Input = {}>(
+  key: string,
+  options?: FetchOptions<Input>
+) =>
+  fetch(`${baseUrl}/api${key}`, {
+    ...options,
+    body: JSON.stringify(options?.body),
+  }).then((b) => b.json() as Output);

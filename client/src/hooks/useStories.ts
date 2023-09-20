@@ -1,8 +1,4 @@
 import { Story } from "../types/Story";
-import { useAPI } from "./useAPI";
+import { createAPIResource } from "./useAPI";
 
-type StoriesResponse = {
-  stories: Story[];
-};
-
-export const useStories = () => useAPI<StoriesResponse>("/stories/");
+export const useStories = () => createAPIResource<Story[]>("/stories/");

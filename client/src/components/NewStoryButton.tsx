@@ -1,11 +1,13 @@
 import { HiSolidPlus } from "solid-icons/hi";
 import style from "./NewStoryButton.module.css";
 
-type NewStoryButtonProps = {};
+type NewStoryButtonProps = {
+  onClick?: () => void;
+};
 
-export function NewStoryButton({}: NewStoryButtonProps) {
+export function NewStoryButton({ onClick }: NewStoryButtonProps) {
   return (
-    <button class={style.newStoryButton}>
+    <button onClick={onClick} class={style.newStoryButton}>
       <HiSolidPlus size={24} />
       <span>Start your next adventure</span>
     </button>

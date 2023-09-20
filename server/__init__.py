@@ -6,7 +6,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from pathlib import Path
 
 from shortuuid import ShortUUID
-from server.api.stories import stories
+from server.api.routes.stories import stories
 import ngrok
 import uvicorn
 
