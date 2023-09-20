@@ -15,7 +15,7 @@ export function Navbar({}: NavbarProps) {
           <span>GoblinAI</span>
         </A>
 
-        <Container as="nav" hasPadding={false} class={style.links}>
+        <Container hasPadding={false} as="nav" class={style.links}>
           <A href="/" end>
             Play
           </A>

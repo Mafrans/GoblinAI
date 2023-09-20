@@ -5,16 +5,31 @@
   height: 60px;
   padding: 0 var(--space-xl);
   font: var(--font-body-lg);
+
+  /* TODO: This is a bad way to do media queries */
+  @media (max-width: 1024px) {
+    padding: 0 var(--space-lg);
+  }
+
+  @media (max-width: 640px) {
+    height: 120px;
+  }
 }
 
 .content {
-  display: flex;
+  display: grid;
+  grid-template-columns: 120px 1fr 120px;
   width: 100%;
   align-items: center;
   gap: var(--space-lg);
+
+  @media (max-width: 640px) {
+    grid-template-columns: 120px 1fr;
+  }
 }
 
 .brand {
+  margin-right: auto;
   display: flex;
   align-items: center;
   gap: var(--space-md);
@@ -30,8 +45,16 @@
 
 .links {
   display: flex;
-  flex: 1;
+  width: 100%;
   gap: var(--space-md);
+  padding-left: rfs(2rem);
+  padding-right: rfs(2rem);
+
+  @media (max-width: 640px) {
+    order: 999;
+    padding-left: 0;
+    padding-right: 0;
+  }
 
   & > a {
     font: var(--font-button);
