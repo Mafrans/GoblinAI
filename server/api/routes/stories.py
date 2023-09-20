@@ -18,6 +18,13 @@ def postNewStory():
     return story
 
 
-@stories.get("/{id}")
+@stories.get("/{id}/")
 def getStoryById(id: str):
     return Story.load(id)
+
+
+@stories.delete("/{id}/")
+def deleteStoryById(id: str):
+    story = Story.load(id)
+    story.delete()
+    return Story.all()

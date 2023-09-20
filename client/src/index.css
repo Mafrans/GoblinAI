@@ -3,6 +3,7 @@
 
   --font-sans: "Inter", sans-serif;
   --font-display: "Inter", sans-serif;
+  --font-mono: "Fira Code", monospace;
 
   --font-headline-1: rfs(700 4rem / 1.2 var(--font-display));
   --font-headline-2: rfs(700 2.75rem / 1.2 var(--font-display));
@@ -14,6 +15,7 @@
   --font-body-xs: 0.625rem / 1.5 var(--font-sans);
   --font-button: 700 0.875rem / 1 var(--font-display);
   --font-label: 600 0.75rem / 1.4 var(--font-sans);
+  --font-code: 0.9375rem / 1.2 var(--font-mono);
 
   --space-xs: 0.1875rem;
   --space-sm: calc(2 * var(--space-xs));
@@ -98,6 +100,11 @@ body {
   color: var(--color-on-background);
 }
 
+body.no-scroll {
+  max-height: 100vh;
+  overflow-y: hidden;
+}
+
 * {
   appearance: none;
   margin: 0;
@@ -139,4 +146,20 @@ button {
 a {
   text-decoration: none;
   color: inherit;
+}
+
+pre {
+  font: var(--font-code);
+  background: var(--color-panel);
+  padding: var(--space-sm);
+  border-radius: var(--rounded);
+  margin: var(--space-xs) 0;
+}
+
+code {
+  font: var(--font-code);
+  background: var(--color-panel);
+  padding: var(--space-xs) var(--padding-sm);
+  border-radius: var(--rounded);
+  margin: 0 var(--space-xs);
 }

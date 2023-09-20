@@ -1,0 +1,40 @@
+.button {
+  border-radius: var(--rounded);
+  padding: var(--space-md) var(--space-lg);
+  font: var(--font-button);
+  transition: background var(--ease-out), color var(--ease-out);
+  cursor: pointer;
+
+  &.iconButton {
+    padding: var(--space-md);
+  }
+}
+
+.primary {
+  background: var(--color-accent);
+  color: var(--color-on-accent);
+}
+
+.secondary {
+  background: var(--color-panel);
+  color: var(--color-on-background);
+
+  &:hover {
+    background: var(--color-panel-double);
+  }
+}
+
+.link {
+  background: transparent;
+  color: var(--color-on-background-muted);
+  margin: calc(-1 * var(--space-md)) calc(-1 * var(--space-lg));
+
+  &.iconButton {
+    margin: calc(-1 * var(--space-md));
+  }
+
+  &:hover {
+    background: var(--color-panel);
+    color: var(--color-on-background);
+  }
+}

@@ -1,6 +1,7 @@
 from datetime import datetime
 import json
 import os
+import shutil
 from faker import Faker
 from shortuuid import uuid
 
@@ -61,11 +62,15 @@ class Story:
             "editedAt": self.editedAt.isoformat(),
         }
 
+    def delete(self):
+        dirPath, _, _ = self.getPath()
+        shutil.rmtree(dirPath)
+
     @staticmethod
     def load(id: str):
         story = Story()
         story.id = id
-        _, storyPath, contentPath = story.getPath()
+        _, storyPath, _ = story.getPath()
 
         if not os.path.exists(storyPath):
             return None

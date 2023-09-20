@@ -5,8 +5,13 @@
   cursor: pointer;
   transition: background var(--ease-out);
   border-left: var(--space-md) solid var(--color-accent);
+  display: flex;
 
   &:hover {
     background: var(--color-panel-double);
   }
+}
+
+.content {
+  flex: 1;
 }

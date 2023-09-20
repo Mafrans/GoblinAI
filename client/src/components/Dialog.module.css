@@ -1,0 +1,66 @@
+.dialog {
+  position: fixed;
+  display: flex;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+  opacity: 100%;
+  padding: var(--space-md);
+}
+
+.overlay {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  user-select: none;
+  background: rgb(0 0 0 / 60%);
+}
+
+.panel {
+  transform: translateY(0);
+  background-color: var(--color-background);
+  border-radius: var(--rounded);
+  overflow: hidden;
+  max-width: 600px;
+  position: relative;
+  z-index: 0;
+
+  & > header {
+    padding: var(--space-lg);
+    background: var(--color-panel-half);
+    font: var(--font-body-lg);
+  }
+
+  & > main {
+    padding: var(--space-lg);
+  }
+
+  & > footer {
+    display: flex;
+    gap: var(--space-md);
+    padding: var(--space-lg);
+    border-top: solid 1px var(--color-panel);
+  }
+}
+
+.enterActive,
+.exitActive {
+  transition: opacity var(--ease-out);
+
+  & .panel {
+    transition: transform var(--ease-out);
+  }
+}
+
+.enter,
+.exitTo {
+  opacity: 0;
+
+  & .panel {
+    transform: translateY(var(--space-md)) scale(0.9);
+  }
+}

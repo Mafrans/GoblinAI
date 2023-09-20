@@ -10,12 +10,15 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@fontsource-variable/fira-code": "^5.0.8",
+    "@fontsource-variable/inter": "^5.0.8",
     "@solidjs/router": "^0.8.3",
     "clsx": "^2.0.0",
     "dayjs": "^1.11.9",
     "rfs": "^10.0.0",
     "solid-icons": "^1.0.12",
-    "solid-js": "^1.7.8"
+    "solid-js": "^1.7.8",
+    "solid-transition-group": "^0.2.3"
   },
   "devDependencies": {
     "postcss-easings": "^4.0.0",

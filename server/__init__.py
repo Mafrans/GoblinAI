@@ -4,8 +4,6 @@ from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
 from pathlib import Path
-
-from shortuuid import ShortUUID
 from server.api.routes.stories import stories
 import ngrok
 import uvicorn
@@ -14,7 +12,7 @@ port = 8000
 app = FastAPI()
 faker = Faker()
 
-corsMethods = ["get"]
+corsMethods = ["GET", "POST", "DELETE", "OPTIONS"]
 corsHeaders = ["*"]
 
 app.add_middleware(
