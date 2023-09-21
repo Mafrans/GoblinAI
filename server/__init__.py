@@ -12,7 +12,7 @@ port = 8000
 app = FastAPI()
 faker = Faker()
 
-corsMethods = ["GET", "POST", "DELETE", "OPTIONS"]
+corsMethods = ["*"]
 corsHeaders = ["*"]
 
 app.add_middleware(
@@ -48,7 +48,8 @@ def tunnel(token: str):
 
     app.add_middleware(
         CORSMiddleware,
-        allow_origins=[tunnel.url()],
+        # allow_origins=[tunnel.url()],
+        allow_origins=["*"],
         cors_methods=corsMethods,
         cors_headers=corsHeaders,
     )
