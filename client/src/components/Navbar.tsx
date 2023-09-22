@@ -1,5 +1,5 @@
 import style from "./Navbar.module.css";
-import Logo from "../assets/logo.svg";
+import Logo from "../../public/logo.svg";
 import { A } from "@solidjs/router";
 import { ThemeSelect } from "./ThemeSelect";
 import { Container } from "./Container";

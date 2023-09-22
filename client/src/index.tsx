@@ -13,6 +13,10 @@ dayjs.extend(relativeTimePlugin);
 
 const root = document.getElementById("root");
 
+if (import.meta.env.DEV && !document.title.includes("(DEV)")) {
+  document.title += " (DEV)";
+}
+
 render(
   () => (
     <Router>
