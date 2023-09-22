@@ -1,10 +1,11 @@
 import { Container } from "../components/Container";
 import { StoryList } from "../components/StoryList";
+import { useDocumentTitle } from "../hooks/useDocumentTitle";
 import { Layout } from "../layouts/Layout";
 import style from "./DashboardView.module.css";
 
 export function DashboardView() {
-  document.title = "Play - GoblinAI";
+  useDocumentTitle("Play");
 
   return (
     <Layout class={style.dashboard}>

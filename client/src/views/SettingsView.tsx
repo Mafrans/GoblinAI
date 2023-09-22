@@ -1,11 +1,12 @@
 import { Container } from "../components/Container";
+import { useDocumentTitle } from "../hooks/useDocumentTitle";
 import { Layout } from "../layouts/Layout";
 import style from "./SettingsView.module.css";
 
 type SettingsViewProps = {};
 
 export function SettingsView({}: SettingsViewProps) {
-  document.title = "Settings - GoblinAI";
+  useDocumentTitle("Settings");
 
   return (
     <Layout class={style.settings}>
