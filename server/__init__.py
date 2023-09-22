@@ -1,9 +1,9 @@
 from multiprocessing import Process
 from faker import Faker
 from fastapi import FastAPI
-from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
 from pathlib import Path
+from server.SPAStaticFiles import SPAStaticFiles
 from server.api.routes.stories import stories
 import ngrok
 import uvicorn
@@ -29,7 +29,11 @@ def start(mode: str):
     clientPath = Path(__file__).parents[1].joinpath("client/dist")
 
     if clientPath.exists():
-        app.mount("/", StaticFiles(directory=clientPath.absolute(), html=True))
+        app.mount(
+            "/",
+            SPAStaticFiles(directory=clientPath.absolute(), html=True),
+            name="client",
+        )
 
     Process(
         target=lambda: uvicorn.run(
