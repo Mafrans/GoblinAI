@@ -58,11 +58,11 @@ export function StoryList(props: StoryListProps) {
         <code>{`./saves/${storyToDelete()?.id}/`}</code> folder will be deleted.
       </Dialog>
 
-      <Show when={canCreateStory}>
-        <NewStoryButton onClick={handleCreateStory} />
-      </Show>
-
       <Suspense fallback={<Loader />}>
+        <Show when={canCreateStory}>
+          <NewStoryButton onClick={handleCreateStory} />
+        </Show>
+
         <For each={stories() ?? []}>
           {(story) => (
             <StoryListItem

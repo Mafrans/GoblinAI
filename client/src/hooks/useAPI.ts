@@ -11,11 +11,20 @@ export const createAPIResource = <Output = unknown>(
   options?: FetchOptions
 ) => createResource<Output>(() => apiFetch<Output>(key, options));
 
-export const apiFetch = <Output, Input = {}>(
+export const apiFetch = async <Output, Input = {}>(
   key: string,
   options?: FetchOptions<Input>
-) =>
-  fetch(`${baseUrl}/api${key}`, {
+) => {
+  if (import.meta.env.DEV) {
+    await simulateLatency(import.meta.env.VITE_DEV_LATENCY ?? 0);
+  }
+
+  return fetch(`${baseUrl}/api${key}`, {
     ...options,
     body: JSON.stringify(options?.body),
   }).then((b) => b.json() as Output);
+};
+
+async function simulateLatency(ms: number) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
