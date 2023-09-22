@@ -10,11 +10,11 @@ type StoryViewParams = {
 
 export function StoryView() {
   const { id } = useParams<StoryViewParams>();
+  document.title = `${id} - GoblinAI`;
 
   return (
     <Layout class={style.story}>
       <Container>
-        {id}
         <Page />
       </Container>
     </Layout>

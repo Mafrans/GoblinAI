@@ -4,6 +4,8 @@ import { Layout } from "../layouts/Layout";
 import style from "./DashboardView.module.css";
 
 export function DashboardView() {
+  document.title = "Play - GoblinAI";
+
   return (
     <Layout class={style.dashboard}>
       <Container as="header" class={style.header}>

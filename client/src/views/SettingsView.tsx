@@ -5,6 +5,8 @@ import style from "./SettingsView.module.css";
 type SettingsViewProps = {};
 
 export function SettingsView({}: SettingsViewProps) {
+  document.title = "Settings - GoblinAI";
+
   return (
     <Layout class={style.settings}>
       <main class={style.content}>
