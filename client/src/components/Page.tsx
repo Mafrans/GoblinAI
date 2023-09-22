@@ -1,8 +1,6 @@
 import style from "./Page.module.css";
 
-type PageProps = {};
-
-export function Page(props: PageProps) {
+export function Page() {
   return (
     <div class={style.page}>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod

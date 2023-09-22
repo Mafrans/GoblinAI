@@ -4,12 +4,12 @@ import os
 import shutil
 from faker import Faker
 from shortuuid import uuid
-
 from server.model.Message import Message
 
 fake = Faker()
 
 savePath = os.path.join(os.curdir, "saves")
+os.makedirs(savePath, exist_ok=True)
 
 
 class Story:
@@ -28,7 +28,7 @@ class Story:
     def save(self):
         dirPath, storyPath, contentPath = self.getPath()
 
-        os.makedirs(dirPath)
+        os.makedirs(dirPath, exist_ok=True)
         with open(storyPath, "w") as file:
             json.dump(self.json(), file)
 

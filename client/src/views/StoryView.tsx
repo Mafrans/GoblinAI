@@ -14,6 +14,7 @@ export function StoryView() {
   return (
     <Layout class={style.story}>
       <Container>
+        {id}
         <Page />
       </Container>
     </Layout>
