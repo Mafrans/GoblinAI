@@ -34,6 +34,7 @@
   display: flex;
   align-items: center;
   gap: var(--space-md);
+  font: var(--font-body-sm);
   padding: var(--space-sm) var(--space-md);
   border-radius: var(--rounded);
   transition: background var(--ease-out);

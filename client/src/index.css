@@ -9,11 +9,11 @@
   --font-headline-2: rfs(700 2.75rem / 1.2 var(--font-display));
   --font-headline-3: rfs(700 1.25rem / 1.2 var(--font-display));
   --font-headline-4: 700 0.8125rem / 1.6 var(--font-display);
-  --font-body-lg: 1.125rem / 1.5 var(--font-sans);
-  --font-body: 0.9375rem / 1.5 var(--font-sans);
-  --font-body-sm: 0.75rem / 1.5 var(--font-sans);
-  --font-body-xs: 0.625rem / 1.5 var(--font-sans);
-  --font-button: 700 0.875rem / 1 var(--font-display);
+  --font-body-lg: 1.25rem / 1.5 var(--font-sans);
+  --font-body: 1rem / 1.5 var(--font-sans);
+  --font-body-sm: 0.875rem / 1.5 var(--font-sans);
+  --font-body-xs: 0.75rem / 1.5 var(--font-sans);
+  --font-button: 700 0.75rem / 1 var(--font-display);
   --font-label: 600 0.75rem / 1.4 var(--font-sans);
   --font-code: 0.9375rem / 1.2 var(--font-mono);
 
