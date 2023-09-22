@@ -27,5 +27,5 @@ class Message:
     @staticmethod
     def mock(index: int):
         return Message(
-            index, " ".join(fake.words(randint(30, 150))).capitalize(), datetime.now()
+            index, " ".join(fake.words(randint(30, 80))).capitalize(), datetime.now()
         )
