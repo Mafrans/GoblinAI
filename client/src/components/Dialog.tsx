@@ -11,7 +11,7 @@ type DialogProps = {
 };
 
 export function Dialog(props: DialogProps) {
-  function handleClickOverlay(event: MouseEvent) {
+  function handleClickOutside(event: MouseEvent) {
     props.onClickOutside?.();
     event.preventDefault();
   }
@@ -27,7 +27,7 @@ export function Dialog(props: DialogProps) {
     >
       <Show when={props.open}>
         <div class={style.dialog}>
-          <div class={style.overlay} onClick={handleClickOverlay} />
+          <div class={style.overlay} onClick={handleClickOutside} />
 
           <article class={style.panel}>
             <Show when={props.title}>
