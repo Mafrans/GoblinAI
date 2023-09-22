@@ -5,6 +5,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from pathlib import Path
 from server.SPAStaticFiles import SPAStaticFiles
 from server.api.routes.stories import stories
+from server.api.routes.messages import messages
 import ngrok
 import uvicorn
 
@@ -23,6 +24,7 @@ app.add_middleware(
 )
 
 app.include_router(stories)
+app.include_router(messages)
 
 
 def start(mode: str):

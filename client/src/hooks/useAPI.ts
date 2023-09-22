@@ -22,8 +22,17 @@ export const apiFetch = async <Output, Input = {}>(
   return fetch(`${baseUrl}/api${key}`, {
     ...options,
     body: JSON.stringify(options?.body),
-  }).then((b) => b.json() as Output);
+  }).then((r) => r.json() as Output);
 };
+
+export const apiStream = async <Input = {}>(
+  key: string,
+  options?: FetchOptions<Input>
+) =>
+  fetch(`${baseUrl}/api${key}`, {
+    ...options,
+    body: JSON.stringify(options?.body),
+  }).then((r) => r.body?.pipeThrough(new TextDecoderStream()).getReader());
 
 async function simulateLatency(ms: number) {
   return new Promise((resolve) => setTimeout(resolve, ms));

@@ -48,11 +48,18 @@ class Story:
     def getMessages(self):
         if not self._messages:
             _, _, contentPath = self.getPath()
-            with open(contentPath, "r") as file:
-                for line, i in file.readlines():
-                    self._messages[i] = Message.parse(line, i)
+            if os.path.exists(contentPath):
+                with open(contentPath, "r") as file:
+                    for line, i in file.readlines():
+                        self._messages[i] = Message.parse(line, i)
 
         return self._messages
+
+    def addMessage(self, message: Message):
+        if not self._messages:
+            self.getMessages()
+
+        self._messages.append(message)
 
     def json(self):
         return {
