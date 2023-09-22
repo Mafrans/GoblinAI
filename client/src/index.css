@@ -1,9 +1,9 @@
 :root {
   color-scheme: dark light;
 
-  --font-sans: "Inter", sans-serif;
-  --font-display: "Inter", sans-serif;
-  --font-mono: "Fira Code", monospace;
+  --font-sans: "Inter Variable", sans-serif;
+  --font-display: "Inter Variable", sans-serif;
+  --font-mono: "Fira Code Variable", monospace;
 
   --font-headline-1: rfs(700 4rem / 1.2 var(--font-display));
   --font-headline-2: rfs(700 2.75rem / 1.2 var(--font-display));
