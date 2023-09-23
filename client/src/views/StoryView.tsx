@@ -4,12 +4,13 @@ import style from "./StoryView.module.css";
 import { Page } from "../components/Page";
 import { Container } from "../components/Container";
 import { useDocumentTitle } from "../hooks/useDocumentTitle";
-import { For, createSignal } from "solid-js";
+import { For, createEffect, createSignal } from "solid-js";
 import { useGenerateMessage } from "../hooks/useGenerateMessage";
 import { Button } from "../components/Button";
 import { HiSolidArrowRight } from "solid-icons/hi";
 import { useMessages } from "../hooks/useMessages";
 import { Message } from "../components/Message";
+import { useStory } from "../hooks/useStory";
 
 type StoryViewParams = {
   id: string;
@@ -17,11 +18,12 @@ type StoryViewParams = {
 
 export function StoryView() {
   const { id } = useParams<StoryViewParams>();
+  const [story] = useStory(id);
   const [messages, { refetch }] = useMessages(id);
   const generateMessage = useGenerateMessage(id);
   const [stream, setStream] = createSignal<string>();
 
-  useDocumentTitle(id);
+  createEffect(() => useDocumentTitle(story()?.name ?? id));
 
   async function handleGenerateMessage() {
     const reader = await generateMessage();
