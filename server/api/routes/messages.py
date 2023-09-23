@@ -11,19 +11,22 @@ messages = APIRouter(prefix="/api/stories/{storyId}/messages")
 
 @messages.get("/")
 def getAllMessages(storyId: str):
-    story = Story.load(storyId)
+    story = Story.getById(storyId)
     return story.getMessages()
 
 
 async def messageStreamer(story: Story):
-    message = Message.mock(len(story.getMessages()))
+    message = Message.mock()
     for c in message.content:
-        await asyncio.sleep(0.025)
+        await asyncio.sleep(0.01)
         yield c
+
+    story.addMessage(message)
+    story.save()
 
 
 @messages.post("/")
 async def generateMessage(storyId: str):
     return StreamingResponse(
-        messageStreamer(Story.load(storyId)), media_type="text/event-stream"
+        messageStreamer(Story.getById(storyId)), media_type="text/event-stream"
     )

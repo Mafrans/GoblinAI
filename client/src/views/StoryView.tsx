@@ -4,10 +4,12 @@ import style from "./StoryView.module.css";
 import { Page } from "../components/Page";
 import { Container } from "../components/Container";
 import { useDocumentTitle } from "../hooks/useDocumentTitle";
-import { createSignal } from "solid-js";
+import { For, createSignal } from "solid-js";
 import { useGenerateMessage } from "../hooks/useGenerateMessage";
 import { Button } from "../components/Button";
 import { HiSolidArrowRight } from "solid-icons/hi";
+import { useMessages } from "../hooks/useMessages";
+import { Message } from "../components/Message";
 
 type StoryViewParams = {
   id: string;
@@ -15,30 +17,34 @@ type StoryViewParams = {
 
 export function StoryView() {
   const { id } = useParams<StoryViewParams>();
+  const [messages, { refetch }] = useMessages(id);
   const generateMessage = useGenerateMessage(id);
-  const [content, setContent] = createSignal<string>("");
-  const [generating, setGenerating] = createSignal<string>("");
+  const [stream, setStream] = createSignal<string>();
 
   useDocumentTitle(id);
 
   async function handleGenerateMessage() {
     const reader = await generateMessage();
+    let nextMessage = "";
     while (reader != null) {
       const { value, done } = await reader.read();
       if (done) break;
 
-      setGenerating(generating() + value);
+      nextMessage += value;
+      setStream(nextMessage);
     }
-    setContent(content() + generating());
-    setGenerating("");
+    await refetch();
+    setStream(undefined);
   }
 
   return (
     <Layout class={style.story}>
       <Container>
         <Page>
-          {content()}
-          {generating()}
+          <For each={messages()}>
+            {(message) => <Message message={message} />}
+          </For>
+          <span>{stream()}</span>
         </Page>
         <Button
           type="primary"

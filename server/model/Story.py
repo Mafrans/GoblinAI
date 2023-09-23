@@ -11,6 +11,9 @@ fake = Faker()
 savePath = os.path.join(os.curdir, "saves")
 os.makedirs(savePath, exist_ok=True)
 
+cachedStories = 5
+storyCache = {}
+
 
 class Story:
     id: str
@@ -35,7 +38,11 @@ class Story:
         if len(self._messages) > 0:
             with open(contentPath, "w") as file:
                 file.truncate(0)
-                file.writelines(self._messages)
+                print([str(message) for message in self._messages])
+                file.writelines(
+                    "\n".join([str(m) for m in self._messages if m.content != ""])
+                )
+                file.close()
 
         pass
 
@@ -50,8 +57,7 @@ class Story:
             _, _, contentPath = self.getPath()
             if os.path.exists(contentPath):
                 with open(contentPath, "r") as file:
-                    for line, i in file.readlines():
-                        self._messages[i] = Message.parse(line, i)
+                    self._messages = [Message.parse(line) for line in file.readlines()]
 
         return self._messages
 
@@ -74,7 +80,10 @@ class Story:
         shutil.rmtree(dirPath)
 
     @staticmethod
-    def load(id: str):
+    def getById(id: str):
+        if id in storyCache:
+            return storyCache[id]
+
         story = Story()
         story.id = id
         _, storyPath, _ = story.getPath()
@@ -95,7 +104,7 @@ class Story:
     def all():
         stories = []
         for id in filter(lambda f: not "." in f, os.listdir(savePath)):
-            story = Story.load(id)
+            story = Story.getById(id)
             if story != None:
                 stories.append(story)
 
