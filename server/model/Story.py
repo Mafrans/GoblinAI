@@ -1,6 +1,7 @@
 from datetime import datetime
 import json
 import os
+import csv
 import shutil
 from faker import Faker
 from shortuuid import uuid
@@ -38,10 +39,8 @@ class Story:
         if len(self._messages) > 0:
             with open(contentPath, "w") as file:
                 file.truncate(0)
-                print([str(message) for message in self._messages])
-                file.writelines(
-                    "\n".join([str(m) for m in self._messages if m.content != ""])
-                )
+                writer = csv.writer(file, quoting=csv.QUOTE_ALL)
+                writer.writerows([[m.content, m.createdAt] for m in self.getMessages()])
                 file.close()
 
         pass
@@ -57,7 +56,9 @@ class Story:
             _, _, contentPath = self.getPath()
             if os.path.exists(contentPath):
                 with open(contentPath, "r") as file:
-                    self._messages = [Message.parse(line) for line in file.readlines()]
+                    reader = csv.reader(file, quoting=csv.QUOTE_ALL)
+                    self._messages = [Message(*r) for r in reader]
+                    file.close()
 
         return self._messages
 
