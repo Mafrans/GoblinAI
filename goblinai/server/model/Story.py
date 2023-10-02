@@ -66,6 +66,7 @@ class Story:
         if not self._messages:
             self.getMessages()
 
+        self.editedAt = datetime.now()
         self._messages.append(message)
 
     def json(self):
@@ -99,6 +100,7 @@ class Story:
             story.createdAt = datetime.fromisoformat(data["createdAt"])
             story.editedAt = datetime.fromisoformat(data["editedAt"])
 
+        storyCache[id] = story
         return story
 
     @staticmethod
