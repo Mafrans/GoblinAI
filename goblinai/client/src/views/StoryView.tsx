@@ -6,8 +6,6 @@ import { Container } from "../components/Container";
 import { useDocumentTitle } from "../hooks/useDocumentTitle";
 import { For, createEffect, createSignal } from "solid-js";
 import { useGenerateMessage } from "../hooks/useGenerateMessage";
-import { Button } from "../components/Button";
-import { HiSolidArrowRight } from "solid-icons/hi";
 import { useMessages } from "../hooks/useMessages";
 import { Message } from "../components/Message";
 import { useStory } from "../hooks/useStory";
