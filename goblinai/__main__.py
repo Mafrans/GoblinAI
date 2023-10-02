@@ -13,7 +13,12 @@ argParser.add_argument("--ngrok-token", type=str)
 argcomplete.autocomplete(argParser)
 args = argParser.parse_args()
 
-if __name__ == "__main__":
+
+def main():
     goblinai.start(
         mode="development" if args.dev else args.mode, ngrokToken=args.ngrok_token
     )
+
+
+if __name__ == "__main__":
+    main()

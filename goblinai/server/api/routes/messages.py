@@ -2,9 +2,9 @@ import asyncio
 import time
 from fastapi import APIRouter
 from fastapi.responses import StreamingResponse
-from server.model.Message import Message
+from goblinai.server.model.Message import Message
 
-from server.model.Story import Story
+from goblinai.server.model.Story import Story
 
 messages = APIRouter(prefix="/api/stories/{storyId}/messages")
 

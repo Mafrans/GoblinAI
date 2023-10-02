@@ -1,5 +1,5 @@
-import server
-import client
+import goblinai.server as server
+import goblinai.client as client
 
 
 def start(mode: str, ngrokToken: str):

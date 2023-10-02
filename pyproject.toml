@@ -6,6 +6,9 @@ authors = ["Mafrans <malte.kluft@gmail.com>"]
 license = "MIT"
 readme = "README.md"
 
+[tool.poetry.scripts]
+start = "goblinai.__main__:main"
+
 [tool.poetry.dependencies]
 python = "^3.10"
 transformers = "^4.33.0"

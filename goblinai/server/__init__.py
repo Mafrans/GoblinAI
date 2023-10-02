@@ -3,9 +3,9 @@ from faker import Faker
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pathlib import Path
-from server.SPAStaticFiles import SPAStaticFiles
-from server.api.routes.stories import stories
-from server.api.routes.messages import messages
+from goblinai.server.SPAStaticFiles import SPAStaticFiles
+from goblinai.server.api.routes.stories import stories
+from goblinai.server.api.routes.messages import messages
 import ngrok
 import uvicorn
 
@@ -39,7 +39,7 @@ def start(mode: str):
 
     Process(
         target=lambda: uvicorn.run(
-            "server:app",
+            "goblinai.server:app",
             port=port,
             log_level="error",
             reload=(mode == "development"),

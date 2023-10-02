@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 
-from server.model.Story import Story
+from goblinai.server.model.Story import Story
 
 stories = APIRouter(prefix="/api/stories")
 

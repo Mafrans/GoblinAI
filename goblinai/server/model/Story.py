@@ -5,7 +5,7 @@ import csv
 import shutil
 from faker import Faker
 from shortuuid import uuid
-from server.model.Message import Message
+from goblinai.server.model.Message import Message
 
 fake = Faker()
 
