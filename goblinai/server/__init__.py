@@ -18,7 +18,7 @@ corsHeaders = ["*"]
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[f"http://localhost:5173"],
+    allow_origins=["http://localhost:5173", f"http://localhost:{port}"],
     allow_methods=corsMethods,
     allow_headers=corsHeaders,
 )
