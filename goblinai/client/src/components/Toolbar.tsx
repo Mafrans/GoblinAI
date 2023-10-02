@@ -12,7 +12,12 @@ type ToolbarProps = {
 export function Toolbar(props: ToolbarProps) {
   return (
     <div class={style.toolbar}>
-      <TextArea ref={props.ref} disabled={props.disabled} autoresize />
+      <TextArea
+        onSubmit={() => props.onGenerate?.()}
+        ref={props.ref}
+        disabled={props.disabled}
+        autoresize
+      />
       <Button
         type="primary"
         disabled={props.disabled}

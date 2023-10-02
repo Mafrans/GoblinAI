@@ -9,14 +9,23 @@ type TextAreaProps = {
   disabled?: boolean;
   children?: JSX.Element;
   ref?: HTMLTextAreaElement;
+  onSubmit?: (value: string) => void;
 };
 
 export function TextArea(props: TextAreaProps) {
-  function handleAutoResize(event: InputEvent) {
+  function handleInput(event: InputEvent) {
     if (props.autoresize) {
       const textarea = event.target as HTMLTextAreaElement;
       textarea.style.removeProperty("height");
       textarea.style.setProperty("height", `${textarea.scrollHeight}px`);
+    }
+  }
+
+  function handleKeyUp(event: KeyboardEvent) {
+    if (event.ctrlKey && event.key === "Enter") {
+      props.onSubmit?.(props.ref?.value ?? "");
+      event.preventDefault();
+      return;
     }
   }
 
@@ -29,7 +38,8 @@ export function TextArea(props: TextAreaProps) {
         ref={props.ref}
         disabled={props.disabled}
         class={clsx(props.autoresize && style.autoresize)}
-        onInput={handleAutoResize}
+        onInput={handleInput}
+        onKeyUp={handleKeyUp}
         rows={props.rows ?? 1}
       >
         {props.children}
