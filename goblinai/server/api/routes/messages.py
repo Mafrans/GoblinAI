@@ -1,9 +1,9 @@
 import asyncio
 import time
-from fastapi import APIRouter
+from fastapi import APIRouter, Body
 from fastapi.responses import StreamingResponse
+from goblinai.server.model.GenerateMessageBody import GenerateMessageBody
 from goblinai.server.model.Message import Message
-
 from goblinai.server.model.Story import Story
 
 messages = APIRouter(prefix="/api/stories/{storyId}/messages")
@@ -15,8 +15,9 @@ def getAllMessages(storyId: str):
     return story.getMessages()
 
 
-async def messageStreamer(story: Story):
-    message = Message.mock()
+async def messageStreamer(story: Story, startContent: str = ""):
+    message = Message.mock(startContent)
+
     for c in message.content:
         await asyncio.sleep(0.01)
         yield c
@@ -26,7 +27,8 @@ async def messageStreamer(story: Story):
 
 
 @messages.post("/")
-async def generateMessage(storyId: str):
+async def generateMessage(storyId: str, body: GenerateMessageBody):
     return StreamingResponse(
-        messageStreamer(Story.getById(storyId)), media_type="text/event-stream"
+        messageStreamer(Story.getById(storyId), body.startContent),
+        media_type="text/event-stream",
     )

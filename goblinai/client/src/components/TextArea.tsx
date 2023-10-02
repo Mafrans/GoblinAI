@@ -8,6 +8,7 @@ type TextAreaProps = {
   autoresize?: boolean;
   disabled?: boolean;
   children?: JSX.Element;
+  ref?: HTMLTextAreaElement;
 };
 
 export function TextArea(props: TextAreaProps) {
@@ -25,6 +26,7 @@ export function TextArea(props: TextAreaProps) {
         <span class={style.label}>{props.label}</span>
       </Show>
       <textarea
+        ref={props.ref}
         disabled={props.disabled}
         class={clsx(props.autoresize && style.autoresize)}
         onInput={handleAutoResize}

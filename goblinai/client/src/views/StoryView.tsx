@@ -16,6 +16,7 @@ type StoryViewParams = {
 };
 
 export function StoryView() {
+  let textarea: HTMLTextAreaElement | undefined;
   const { id } = useParams<StoryViewParams>();
   const [story] = useStory(id);
   const [messages, { refetch }] = useMessages(id);
@@ -25,7 +26,13 @@ export function StoryView() {
   createEffect(() => useDocumentTitle(story()?.name ?? id));
 
   async function handleGenerateMessage() {
-    const reader = await generateMessage();
+    if (textarea == null) {
+      return;
+    }
+
+    const reader = await generateMessage(textarea.value);
+    textarea.value = "";
+
     let nextMessage = "";
     while (reader != null) {
       const { value, done } = await reader.read();
@@ -34,6 +41,7 @@ export function StoryView() {
       nextMessage += value;
       setStream(nextMessage);
     }
+
     await refetch();
     setStream(undefined);
   }
@@ -50,6 +58,7 @@ export function StoryView() {
           </div>
 
           <Toolbar
+            ref={textarea}
             disabled={stream() != null}
             onGenerate={handleGenerateMessage}
           />

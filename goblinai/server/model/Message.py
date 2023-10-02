@@ -28,8 +28,8 @@ class Message:
         )
 
     @staticmethod
-    def mock():
-        content = ""
+    def mock(startContent: str = ""):
+        content = startContent
 
         for i in range(0, randint(0, 3)):
             if i > 0:

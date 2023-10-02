@@ -6,12 +6,13 @@ import { TextArea } from "./TextArea";
 type ToolbarProps = {
   onGenerate?: () => void;
   disabled?: boolean;
+  ref?: HTMLTextAreaElement;
 };
 
 export function Toolbar(props: ToolbarProps) {
   return (
     <div class={style.toolbar}>
-      <TextArea disabled={props.disabled} autoresize />
+      <TextArea ref={props.ref} disabled={props.disabled} autoresize />
       <Button
         type="primary"
         disabled={props.disabled}

@@ -21,6 +21,10 @@ export const apiFetch = async <Output, Input = {}>(
 
   return fetch(`${baseUrl}/api${key}`, {
     ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options?.headers,
+    },
     body: JSON.stringify(options?.body),
   }).then((r) => r.json() as Output);
 };
@@ -31,6 +35,10 @@ export const apiStream = async <Input = {}>(
 ) =>
   fetch(`${baseUrl}/api${key}`, {
     ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...options?.headers,
+    },
     body: JSON.stringify(options?.body),
   }).then((r) => r.body?.pipeThrough(new TextDecoderStream()).getReader());
 
