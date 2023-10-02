@@ -11,6 +11,7 @@ import { HiSolidArrowRight } from "solid-icons/hi";
 import { useMessages } from "../hooks/useMessages";
 import { Message } from "../components/Message";
 import { useStory } from "../hooks/useStory";
+import { Toolbar } from "../components/Toolbar";
 
 type StoryViewParams = {
   id: string;
@@ -42,19 +43,16 @@ export function StoryView() {
   return (
     <Layout class={style.story}>
       <Container>
-        <Page>
-          <For each={messages()}>
-            {(message) => <Message message={message} />}
-          </For>
-          <span>{stream()}</span>
+        <Page class={style.content}>
+          <div class={style.messages}>
+            <For each={messages()}>
+              {(message) => <Message message={message} />}
+            </For>
+            <span>{stream()}</span>
+          </div>
+
+          <Toolbar onGenerate={handleGenerateMessage} />
         </Page>
-        <Button
-          type="primary"
-          icon={HiSolidArrowRight}
-          onClick={handleGenerateMessage}
-        >
-          Generate
-        </Button>
       </Container>
     </Layout>
   );

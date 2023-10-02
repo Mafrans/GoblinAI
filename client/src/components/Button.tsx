@@ -5,12 +5,16 @@ import clsx from "clsx";
 type ButtonProps = {
   children?: string;
   icon?: IconTypes;
+  leadingIcon?: IconTypes;
+  trailingIcon?: IconTypes;
   type?: "primary" | "secondary" | "link";
   onClick?: () => void;
 };
 
 export function Button(props: ButtonProps) {
-  const Icon = props.icon;
+  const LeadingIcon = props.leadingIcon ?? props.icon;
+  const TrailingIcon = props.trailingIcon;
+  const children = props.children;
 
   function handleClick(event: MouseEvent) {
     event.preventDefault();
@@ -19,15 +23,14 @@ export function Button(props: ButtonProps) {
 
   return (
     <button
-      class={clsx(
-        style.button,
-        style[props.type ?? "secondary"],
-        props.icon && !props.children && style.iconButton
-      )}
+      class={clsx(style.button, style[props.type ?? "secondary"])}
       onClick={handleClick}
     >
-      {Icon && <Icon size={16} />}
-      {props.children}
+      <div class={style.content}>
+        {LeadingIcon && <LeadingIcon size={20} />}
+        {children && <span class={style.text}>{children}</span>}
+        {TrailingIcon && <TrailingIcon size={20} />}
+      </div>
     </button>
   );
 }

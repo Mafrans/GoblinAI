@@ -13,7 +13,7 @@
   --font-body: 1rem / 1.5 var(--font-sans);
   --font-body-sm: 0.875rem / 1.5 var(--font-sans);
   --font-body-xs: 0.75rem / 1.5 var(--font-sans);
-  --font-button: 700 0.75rem / 1 var(--font-display);
+  --font-button: 600 0.875rem / 1 var(--font-display);
   --font-label: 600 0.75rem / 1.4 var(--font-sans);
   --font-code: 0.9375rem / 1.2 var(--font-mono);
 

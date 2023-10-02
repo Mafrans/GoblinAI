@@ -3,7 +3,7 @@
 
   & .label {
     display: inline-block;
-    font: var(--font-body-xs);
+    font: var(--font-label);
     color: var(--color-on-background-muted);
     transition: margin-bottom var(--ease-out);
   }
@@ -16,7 +16,7 @@
   & input {
     width: 100%;
     border: none;
-    padding: var(--space-sm) var(--space-md);
+    padding: var(--space-md);
     font: var(--font-body);
     background: var(--color-panel-double);
     border-radius: var(--rounded);

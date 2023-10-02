@@ -1,2 +1,11 @@
 .story {
 }
+
+.content {
+  display: flex;
+  flex-direction: column;
+}
+
+.messages {
+  flex: 1;
+}

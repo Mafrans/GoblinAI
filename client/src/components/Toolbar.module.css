@@ -1,0 +1,5 @@
+.toolbar {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--space-md);
+}
