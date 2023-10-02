@@ -10,6 +10,7 @@ import { useMessages } from "../hooks/useMessages";
 import { Message } from "../components/Message";
 import { useStory } from "../hooks/useStory";
 import { Toolbar } from "../components/Toolbar";
+import { MessageStream } from "../components/MessageStream";
 
 type StoryViewParams = {
   id: string;
@@ -54,7 +55,7 @@ export function StoryView() {
             <For each={messages()}>
               {(message) => <Message message={message} />}
             </For>
-            <span>{stream()}</span>
+            <MessageStream stream={stream()} />
           </div>
 
           <Toolbar
