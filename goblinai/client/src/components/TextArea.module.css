@@ -19,6 +19,7 @@
     border: none;
     padding: var(--space-md);
     font: var(--font-body);
+    color: var(--color-on-background);
     background: var(--color-panel-double);
     border-radius: var(--rounded);
     resize: vertical;
