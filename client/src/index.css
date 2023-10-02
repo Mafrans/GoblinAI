@@ -163,3 +163,8 @@ code {
   border-radius: var(--rounded);
   margin: 0 var(--space-xs);
 }
+
+[disabled] {
+  opacity: 30% !important;
+  cursor: default !important;
+}

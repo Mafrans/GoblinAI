@@ -5,15 +5,16 @@ import { TextArea } from "./TextArea";
 
 type ToolbarProps = {
   onGenerate?: () => void;
+  disabled?: boolean;
 };
 
 export function Toolbar(props: ToolbarProps) {
   return (
     <div class={style.toolbar}>
-      <TextArea></TextArea>
-
+      <TextArea disabled={props.disabled} autoresize />
       <Button
         type="primary"
+        disabled={props.disabled}
         icon={HiSolidArrowRight}
         onClick={props.onGenerate}
       />

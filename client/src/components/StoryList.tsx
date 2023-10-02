@@ -16,8 +16,6 @@ type StoryListProps = {
 };
 
 export function StoryList(props: StoryListProps) {
-  const canCreateStory = props.canCreateStory ?? true;
-
   const navigate = useNavigate();
   const [stories, { mutate: setStories }] = useStories();
   const [storyToDelete, setStoryToDelete] = createSignal<Story>();
@@ -59,7 +57,7 @@ export function StoryList(props: StoryListProps) {
       </Dialog>
 
       <Suspense fallback={<Loader />}>
-        <Show when={canCreateStory}>
+        <Show when={props.canCreateStory ?? true}>
           <NewStoryButton onClick={handleCreateStory} />
         </Show>
 

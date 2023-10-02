@@ -8,16 +8,12 @@ type TextFieldProps = {
 };
 
 export function TextField(props: TextFieldProps) {
-  const label = props.label;
-  const type = props.type ?? "text";
-  const placeholder = props.placeholder;
-
   return (
     <label class={style.textField}>
-      <Show when={label != null}>
-        <span class={style.label}>{label}</span>
+      <Show when={props.label != null}>
+        <span class={style.label}>{props.label}</span>
       </Show>
-      <input type={type} placeholder={placeholder} />
+      <input type={props.type} placeholder={props.placeholder} />
     </label>
   );
 }

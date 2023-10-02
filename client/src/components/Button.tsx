@@ -1,21 +1,19 @@
 import { IconTypes } from "solid-icons";
 import style from "./Button.module.css";
 import clsx from "clsx";
+import { Dynamic, Show } from "solid-js/web";
 
 type ButtonProps = {
   children?: string;
   icon?: IconTypes;
   leadingIcon?: IconTypes;
   trailingIcon?: IconTypes;
+  disabled?: boolean;
   type?: "primary" | "secondary" | "link";
   onClick?: () => void;
 };
 
 export function Button(props: ButtonProps) {
-  const LeadingIcon = props.leadingIcon ?? props.icon;
-  const TrailingIcon = props.trailingIcon;
-  const children = props.children;
-
   function handleClick(event: MouseEvent) {
     event.preventDefault();
     props.onClick?.();
@@ -23,13 +21,16 @@ export function Button(props: ButtonProps) {
 
   return (
     <button
+      disabled={props.disabled}
       class={clsx(style.button, style[props.type ?? "secondary"])}
       onClick={handleClick}
     >
       <div class={style.content}>
-        {LeadingIcon && <LeadingIcon size={20} />}
-        {children && <span class={style.text}>{children}</span>}
-        {TrailingIcon && <TrailingIcon size={20} />}
+        <Dynamic component={props.leadingIcon ?? props.icon} size={20} />
+        <Show when={props.children != null}>
+          <span class={style.text}>{props.children}</span>
+        </Show>
+        <Dynamic component={props.trailingIcon} size={20} />
       </div>
     </button>
   );

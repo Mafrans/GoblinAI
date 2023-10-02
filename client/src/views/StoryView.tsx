@@ -51,7 +51,10 @@ export function StoryView() {
             <span>{stream()}</span>
           </div>
 
-          <Toolbar onGenerate={handleGenerateMessage} />
+          <Toolbar
+            disabled={stream() != null}
+            onGenerate={handleGenerateMessage}
+          />
         </Page>
       </Container>
     </Layout>
