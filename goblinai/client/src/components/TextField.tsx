@@ -1,34 +1,19 @@
-import { Show } from "solid-js";
+import { JSX, Show, splitProps } from "solid-js";
 import style from "./TextField.module.css";
 
-type TextFieldProps = {
-  type?: string;
+type TextFieldProps = JSX.InputHTMLAttributes<HTMLInputElement> & {
   label?: string;
-  placeholder?: string;
-  ref?: HTMLInputElement;
-  onSubmit?: (value: string) => void;
 };
 
-export function TextField(props: TextFieldProps) {
-  function handleKeyUp(event: KeyboardEvent) {
-    if (event.ctrlKey && event.key === "Enter") {
-      props.onSubmit?.(props.ref?.value ?? "");
-      event.preventDefault();
-      return;
-    }
-  }
+export function TextField(allProps: TextFieldProps) {
+  const [props, inputProps] = splitProps(allProps, ["label"]);
 
   return (
     <label class={style.textField}>
       <Show when={props.label != null}>
         <span class={style.label}>{props.label}</span>
       </Show>
-      <input
-        ref={props.ref}
-        type={props.type}
-        placeholder={props.placeholder}
-        onKeyUp={handleKeyUp}
-      />
+      <input {...inputProps} />
     </label>
   );
 }

@@ -24,7 +24,7 @@ export function StoryListItem(props: StoryListItemProps) {
       </div>
 
       <div class={style.buttons}>
-        <Button type="link" icon={HiSolidTrash} onClick={props.onDelete} />
+        <Button variant="link" icon={HiSolidTrash} onClick={props.onDelete} />
       </div>
     </Link>
   );

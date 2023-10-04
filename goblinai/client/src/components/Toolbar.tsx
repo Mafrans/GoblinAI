@@ -10,20 +10,28 @@ type ToolbarProps = {
 };
 
 export function Toolbar(props: ToolbarProps) {
+  function handleKeyUp(event: KeyboardEvent) {
+    // Handle keyboard submit
+    if (event.ctrlKey && event.key === "Enter") {
+      props.onGenerate?.();
+      event.preventDefault();
+    }
+  }
+
   return (
-    <div class={style.toolbar}>
-      <TextArea
-        onSubmit={() => props.onGenerate?.()}
-        ref={props.ref}
-        disabled={props.disabled}
-        autoresize
-      />
+    <form
+      method="dialog"
+      onKeyUp={handleKeyUp}
+      onSubmit={() => props.onGenerate?.()}
+      class={style.toolbar}
+    >
+      <TextArea ref={props.ref} disabled={props.disabled} autoresize />
       <Button
-        type="primary"
+        type="submit"
+        variant="primary"
         disabled={props.disabled}
         icon={HiSolidArrowRight}
-        onClick={props.onGenerate}
       />
-    </div>
+    </form>
   );
 }

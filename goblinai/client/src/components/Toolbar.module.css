@@ -1,4 +1,5 @@
 .toolbar {
+  margin-top: var(--space-lg);
   display: flex;
   align-items: flex-end;
   gap: var(--space-md);

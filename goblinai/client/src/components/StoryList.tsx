@@ -44,10 +44,10 @@ export function StoryList(props: StoryListProps) {
         open={storyToDelete() !== undefined}
         title={`Permanently delete ${storyToDelete()?.name}?`}
         buttons={[
-          <Button type="primary" onClick={() => setStoryToDelete(undefined)}>
+          <Button variant="primary" onClick={() => setStoryToDelete(undefined)}>
             No, I don't
           </Button>,
-          <Button type="secondary" onClick={handleDeleteStory}>
+          <Button variant="secondary" onClick={handleDeleteStory}>
             Yes, I want to delete it
           </Button>,
         ]}
