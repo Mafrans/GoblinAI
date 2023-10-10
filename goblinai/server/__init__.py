@@ -37,14 +37,12 @@ def start(mode: str):
             name="client",
         )
 
-    Process(
-        target=lambda: uvicorn.run(
-            "goblinai.server:app",
-            port=port,
-            log_level="error",
-            reload=(mode == "development"),
-        )
-    ).start()
+    Process(target=lambda: uvicorn.run(
+        "goblinai.server:app",
+        port=port,
+        log_level="error",
+        reload=(mode == "development"),
+    )).start()
 
     print(f"GoblinAI running on http://localhost:8000")
 

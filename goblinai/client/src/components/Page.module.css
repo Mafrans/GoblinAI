@@ -5,6 +5,6 @@
   border-radius: var(--rounded) var(--rounded) 0 0;
   margin-left: auto;
   margin-right: auto;
-  padding: 100px;
+  padding: min(100px, 9.7vw);
   font: var(--font-body);
 }

@@ -1,10 +1,11 @@
-import { HiSolidArrowRight } from "solid-icons/hi";
+import {HiSolidArrowPath, HiSolidArrowRight} from "solid-icons/hi";
 import { Button } from "./Button";
 import style from "./Toolbar.module.css";
 import { TextArea } from "./TextArea";
 
 type ToolbarProps = {
   onGenerate?: () => void;
+  onRegenerate?: () => void;
   disabled?: boolean;
   ref?: HTMLTextAreaElement;
 };
@@ -31,6 +32,12 @@ export function Toolbar(props: ToolbarProps) {
         variant="primary"
         disabled={props.disabled}
         icon={HiSolidArrowRight}
+      />
+      <Button
+        variant="secondary"
+        disabled={props.disabled}
+        onClick={() => props.onRegenerate?.()}
+        icon={HiSolidArrowPath}
       />
     </form>
   );

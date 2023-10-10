@@ -32,3 +32,10 @@ async def generateMessage(storyId: str, body: GenerateMessageBody):
         messageStreamer(Story.getById(storyId), body.startContent),
         media_type="text/event-stream",
     )
+
+
+@messages.delete("/{index}/")
+async def deleteMessage(storyId: str, index: int):
+    story = Story.getById(storyId)
+    story.deleteMessage(index)
+    story.save()

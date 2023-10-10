@@ -36,19 +36,20 @@ class Story:
         with open(storyPath, "w") as file:
             json.dump(self.json(), file)
 
-        if len(self._messages) > 0:
-            with open(contentPath, "w") as file:
-                file.truncate(0)
+        with open(contentPath, "w") as file:
+            file.truncate(0)
+            if len(self._messages) > 0:
                 writer = csv.writer(file, quoting=csv.QUOTE_ALL)
-                writer.writerows([[m.content, m.createdAt] for m in self.getMessages()])
-                file.close()
+                writer.writerows([[m.content, m.createdAt] for m in self._messages])
+
+            file.close()
 
         pass
 
     def getPath(self):
         dirPath = os.path.join(savePath, self.id)
         storyPath = os.path.join(dirPath, "story.json")
-        contentPath = os.path.join(dirPath, "content.txt")
+        contentPath = os.path.join(dirPath, "content.csv")
         return dirPath, storyPath, contentPath
 
     def getMessages(self):
@@ -68,6 +69,12 @@ class Story:
 
         self.editedAt = datetime.now()
         self._messages.append(message)
+
+    def deleteMessage(self, index: int):
+        if len(self._messages) == 0:
+            return
+
+        self._messages.pop(index)
 
     def json(self):
         return {
@@ -106,9 +113,9 @@ class Story:
     @staticmethod
     def all():
         stories = []
-        for id in filter(lambda f: not "." in f, os.listdir(savePath)):
+        for id in filter(lambda f: "." not in f, os.listdir(savePath)):
             story = Story.getById(id)
-            if story != None:
+            if story is not None:
                 stories.append(story)
 
         return stories

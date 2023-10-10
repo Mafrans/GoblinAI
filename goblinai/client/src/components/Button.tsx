@@ -25,6 +25,7 @@ export function Button(allProps: ButtonProps) {
   return (
     <button
       {...buttonProps}
+      type={buttonProps.type ?? "button"}
       disabled={props.disabled}
       class={clsx(
         style.button,
