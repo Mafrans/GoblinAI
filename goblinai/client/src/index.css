@@ -30,15 +30,16 @@
   --rounded: 7px;
   --rounded-sm: 2px;
 
-  --ease-out: var(--duration, 0.125s) easeOutCubic;
+  --duration: 0.125s;
+  --ease-out: var(--duration) easeOutCubic;
 }
 
 @define-mixin theme $name {
   @media (prefers-color-scheme: $(name)) {
-    :root {
-      @mixin-content;
-    }
+  :root {
+    @mixin-content;
   }
+}
 
   [theme="$(name)"] {
     @mixin-content;

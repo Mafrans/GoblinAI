@@ -1,0 +1,72 @@
+.select {
+  width: max-content;
+
+  & > label {
+    display: block;
+    font: var(--font-label);
+    margin-bottom: var(--space-sm);
+  }
+
+  & > select {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+}
+
+.button {
+  font: var(--font-body);
+  width: max-content;
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-md) var(--space-lg);
+  background: var(--color-panel-double);
+  border-radius: var(--rounded);
+  cursor: pointer;
+  transition: background var(--ease-out);
+
+  &:hover {
+    background: var(--color-panel-triple);
+  }
+}
+
+.options {
+  width: 100%;
+  margin-top: var(--space-md);
+  background: var(--color-panel-double);
+  border-radius: var(--rounded);
+  transform-origin: top center;
+  overflow: scroll;
+  box-shadow: var(--shadow);
+
+  & > button {
+    display: block;
+    width: 100%;
+    text-align: left;
+    font: var(--font-body);
+    transition: background var(--ease-out);
+    padding: var(--space-md) var(--space-lg);
+
+    &:hover, :focus {
+      background: var(--color-panel-triple);
+    }
+  }
+
+  &.enterActive,
+  &.exitActive {
+    transition: opacity var(--ease-out), transform var(--ease-out);
+  }
+
+  &.enter,
+  &.exitTo {
+    opacity: 0;
+    transform: translateY(calc(-1 * var(--space-md))) scale(0.9);
+  }
+}
