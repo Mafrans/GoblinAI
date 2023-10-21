@@ -1,5 +1,7 @@
 .select {
+  position: relative;
   width: max-content;
+  z-index: 1;
 
   & > label {
     display: block;
@@ -39,8 +41,10 @@
 
 .options {
   width: 100%;
+  position: absolute;
+  z-index: 1;
   margin-top: var(--space-md);
-  background: var(--color-panel-double);
+  background: var(--color-background);
   border-radius: var(--rounded);
   transform-origin: top center;
   overflow: scroll;
@@ -51,11 +55,14 @@
     width: 100%;
     text-align: left;
     font: var(--font-body);
+    background: var(--color-panel);
     transition: background var(--ease-out);
     padding: var(--space-md) var(--space-lg);
+    cursor: pointer;
 
-    &:hover, :focus {
-      background: var(--color-panel-triple);
+    &:hover, &:focus {
+      background: var(--color-panel-double);
+      outline-offset: -3px;
     }
   }
 

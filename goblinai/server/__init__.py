@@ -4,6 +4,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pathlib import Path
 from goblinai.server.SPAStaticFiles import SPAStaticFiles
+from goblinai.server.api.routes.settings import settings
 from goblinai.server.api.routes.stories import stories
 from goblinai.server.api.routes.messages import messages
 import ngrok
@@ -25,6 +26,7 @@ app.add_middleware(
 
 app.include_router(stories)
 app.include_router(messages)
+app.include_router(settings)
 
 
 def start(mode: str):

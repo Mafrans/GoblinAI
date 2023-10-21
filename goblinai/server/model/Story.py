@@ -34,7 +34,13 @@ class Story:
 
         os.makedirs(dirPath, exist_ok=True)
         with open(storyPath, "w") as file:
-            json.dump(self.json(), file)
+            json.dump({
+                "id": self.id,
+                "name": self.name,
+                "createdAt": self.createdAt.isoformat(),
+                "editedAt": self.editedAt.isoformat(),
+            }, file)
+            file.close()
 
         with open(contentPath, "w") as file:
             file.truncate(0)
@@ -76,14 +82,6 @@ class Story:
 
         self._messages.pop(index)
 
-    def json(self):
-        return {
-            "id": self.id,
-            "name": self.name,
-            "createdAt": self.createdAt.isoformat(),
-            "editedAt": self.editedAt.isoformat(),
-        }
-
     def delete(self):
         dirPath, _, _ = self.getPath()
         shutil.rmtree(dirPath)
@@ -106,6 +104,7 @@ class Story:
             story.name = data["name"]
             story.createdAt = datetime.fromisoformat(data["createdAt"])
             story.editedAt = datetime.fromisoformat(data["editedAt"])
+            file.close()
 
         storyCache[id] = story
         return story

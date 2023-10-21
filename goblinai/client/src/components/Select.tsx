@@ -4,40 +4,53 @@ import {
   createSignal,
   createUniqueId,
   For,
+  onCleanup,
   Show,
 } from "solid-js";
 import { HiSolidChevronDown } from "solid-icons/hi";
 import { Transition } from "solid-transition-group";
 
-type SelectProps<T = string> = {
+type SelectProps = {
   label?: string;
   placeholder?: string;
   default?: string;
-  options?: Record<string, T>;
-  onSelect?: (value: T | undefined, previous: T | undefined) => void;
+  options: Record<string, string>;
+  onSelect?: (value: string, previous: string) => void;
 };
 
-export function Select<T>(props: SelectProps<T>) {
+export function Select(props: SelectProps) {
   const [open, setOpen] = createSignal(false);
-  const [selectedKey, setSelectedKey] = createSignal(props.default);
+  const [selection, setSelection] = createSignal(props.default ?? "");
   const id = createUniqueId();
   let selectRef: HTMLSelectElement | undefined;
 
-  createEffect(() => console.log(open()));
+  function handleClick(event: MouseEvent) {
+    setOpen(!open());
 
-  function handleChange(event: Event) {
-    const selectElement = event.target as HTMLSelectElement;
-
-    const previousKey = selectedKey();
-    let previousValue: T | undefined;
-    if (previousKey != null) {
-      previousValue = props.options?.[previousKey];
-    }
-
-    const newValue = props.options?.[selectElement.value];
-    props.onSelect?.(newValue, previousValue);
-    setSelectedKey(() => selectElement.value);
+    event.preventDefault();
+    event.stopPropagation();
   }
+
+  function handleClickOutside() {
+    setOpen(false);
+  }
+
+  createEffect(() => {
+    if (selectRef != null) {
+      if (selectRef.value != null || props.default == null) {
+        props.onSelect?.(selection(), selectRef.value);
+      }
+
+      selectRef.value = selection();
+    }
+  });
+
+  createEffect(() => {
+    window.addEventListener("click", handleClickOutside);
+    onCleanup(() => {
+      window.removeEventListener("click", handleClickOutside);
+    });
+  });
 
   return (
     <div class={style.select}>
@@ -45,12 +58,8 @@ export function Select<T>(props: SelectProps<T>) {
         <label for={id}>{props.label}</label>
       </Show>
 
-      <button
-        type="button"
-        onClick={() => setOpen(!open())}
-        class={style.button}
-      >
-        <span>{selectedKey() ?? props.placeholder}</span>
+      <button type="button" onClick={handleClick} class={style.button}>
+        <span>{props.options[selection()] ?? props.placeholder}</span>
         <HiSolidChevronDown size={20} />
       </button>
 
@@ -62,14 +71,18 @@ export function Select<T>(props: SelectProps<T>) {
       >
         <Show when={open()}>
           <div class={style.options}>
-            <For each={Object.keys(props.options ?? {})}>
-              {(key) => <button type="button">{key}</button>}
+            <For each={Object.entries(props.options)}>
+              {([key, value]) => (
+                <button type="button" onClick={() => setSelection(key)}>
+                  {value}
+                </button>
+              )}
             </For>
           </div>
         </Show>
       </Transition>
 
-      <select id={id} onChange={handleChange} ref={selectRef}>
+      <select tabIndex={-1} id={id} ref={selectRef}>
         <For each={Object.keys(props.options ?? {})}>
           {(key) => <option value={key}>{key}</option>}
         </For>
