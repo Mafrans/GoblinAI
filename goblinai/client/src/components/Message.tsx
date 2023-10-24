@@ -1,10 +1,11 @@
 import clsx from "clsx";
 import style from "./Message.module.css";
 import { createMemo, For } from "solid-js";
+import { ParagraphStyle } from "../types/ParagraphStyle";
 
 type MessageProps = {
   message: Message;
-  paragraphStyle?: "indent" | "margin";
+  paragraphStyle?: ParagraphStyle;
 };
 
 export function Message(props: MessageProps) {

@@ -15,6 +15,14 @@ export function StoryListItem(props: StoryListItemProps) {
   const createdAt = createMemo(() => dayjs(props.story.createdAt));
   const editedAt = createMemo(() => dayjs(props.story.editedAt));
 
+  function handleDelete(event: MouseEvent) {
+    props.onDelete?.();
+
+    // Event must be prevented because the delete button is inside a link, and
+    // not preventing default link behavior would cause navigation
+    event.preventDefault();
+  }
+
   return (
     <Link href={`/story/${props.story.id}`} class={style.storyListItem}>
       <div class={style.content}>
@@ -24,7 +32,7 @@ export function StoryListItem(props: StoryListItemProps) {
       </div>
 
       <div class={style.buttons}>
-        <Button variant="link" icon={HiSolidTrash} onClick={props.onDelete} />
+        <Button variant="link" icon={HiSolidTrash} onClick={handleDelete} />
       </div>
     </Link>
   );

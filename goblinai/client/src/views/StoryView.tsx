@@ -13,7 +13,6 @@ import { Toolbar } from "../components/Toolbar";
 import { MessageStream } from "../components/MessageStream";
 import { useDeleteMessage } from "../hooks/useDeleteMessage";
 import { useStorySettings } from "../hooks/useStorySettings";
-import { useUpdateStorySettings } from "../hooks/useUpdateStorySettings";
 
 type StoryViewParams = {
   id: string;
@@ -26,7 +25,6 @@ export function StoryView() {
   const [messages, { refetch: refetchMessages, mutate: mutateMessages }] =
     useMessages(id);
   const [settings] = useStorySettings(id);
-  const updateSettings = useUpdateStorySettings(id);
   const generateMessage = useGenerateMessage(id);
   const deleteMessage = useDeleteMessage(id);
   const [stream, setStream] = createSignal<string>();

@@ -8,6 +8,7 @@ import { useUpdateGlobalSettings } from "../hooks/useUpdateGlobalSettings.ts";
 import { Settings } from "../types/Settings.ts";
 import { Show, Suspense } from "solid-js";
 import { Loader } from "../components/Loader.tsx";
+import { ParagraphStyle } from "../types/ParagraphStyle.ts";
 
 type SettingsViewProps = {};
 
@@ -39,7 +40,7 @@ export function SettingsView({}: SettingsViewProps) {
                 }}
                 onSelect={(paragraphStyle) =>
                   handleUpdateSettings({
-                    paragraphStyle,
+                    paragraphStyle: paragraphStyle as ParagraphStyle,
                   })
                 }
               />

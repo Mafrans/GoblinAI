@@ -1,3 +1,5 @@
+import { ParagraphStyle } from "./ParagraphStyle";
+
 export type Settings = {
-  paragraphStyle: "indent" | "margin";
+  paragraphStyle: ParagraphStyle;
 };

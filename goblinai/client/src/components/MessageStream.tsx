@@ -1,9 +1,10 @@
 import { createMemo } from "solid-js";
 import { Message } from "./Message";
+import { ParagraphStyle } from "../types/ParagraphStyle";
 
 type MessageStreamProps = {
   stream?: string;
-  paragraphStyle?: "indent" | "margin";
+  paragraphStyle?: ParagraphStyle;
 };
 
 export function MessageStream(props: MessageStreamProps) {
