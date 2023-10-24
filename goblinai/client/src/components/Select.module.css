@@ -24,6 +24,7 @@
 
 .button {
   font: var(--font-body);
+  color: var(--color-on-background);
   width: max-content;
   display: flex;
   align-items: center;
@@ -55,12 +56,14 @@
     width: 100%;
     text-align: left;
     font: var(--font-body);
+    color: var(--color-on-background);
     background: var(--color-panel);
     transition: background var(--ease-out);
     padding: var(--space-md) var(--space-lg);
     cursor: pointer;
 
-    &:hover, &:focus {
+    &:hover,
+    &:focus {
       background: var(--color-panel-double);
       outline-offset: -3px;
     }
@@ -68,7 +71,9 @@
 
   &.enterActive,
   &.exitActive {
-    transition: opacity var(--ease-out), transform var(--ease-out);
+    transition:
+      opacity var(--ease-out),
+      transform var(--ease-out);
   }
 
   &.enter,
