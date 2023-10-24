@@ -25,14 +25,16 @@ class Settings:
 
     @staticmethod
     def load(path=settingsPath):
-        if not os.path.exists(path):
-            settings = Settings()
-            settings.save()
+        if os.path.exists(path):
+            with open(path, "r") as file:
+                data = json.load(file)
+                settings = Settings(**data)
+                file.close()
             return settings
 
-        with open(path, "r") as file:
-            data = json.load(file)
-            settings = Settings(**data)
-            file.close()
+        if os.path.exists(settingsPath):
+            return Settings.load(settingsPath)
 
+        settings = Settings()
+        settings.save()
         return settings

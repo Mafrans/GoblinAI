@@ -3,6 +3,10 @@
   white-space: pre-wrap;
 }
 
-.message > p {
+.message.indent > p {
   text-indent: var(--space-lg);
+}
+
+.message.margin > p {
+  margin-bottom: var(--space-md);
 }

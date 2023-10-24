@@ -1,3 +1,3 @@
 export type Settings = {
-  paragraphStyle: string;
+  paragraphStyle: "indent" | "margin";
 };

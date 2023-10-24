@@ -3,8 +3,8 @@ import { useDocumentTitle } from "../hooks/useDocumentTitle";
 import { Layout } from "../layouts/Layout";
 import style from "./SettingsView.module.css";
 import { Select } from "../components/Select.tsx";
-import { useSettings } from "../hooks/useSettings.ts";
-import { useUpdateSettings } from "../hooks/useUpdateSettings.ts";
+import { useGlobalSettings } from "../hooks/useGlobalSettings.ts";
+import { useUpdateGlobalSettings } from "../hooks/useUpdateGlobalSettings.ts";
 import { Settings } from "../types/Settings.ts";
 import { Show, Suspense } from "solid-js";
 import { Loader } from "../components/Loader.tsx";
@@ -12,8 +12,8 @@ import { Loader } from "../components/Loader.tsx";
 type SettingsViewProps = {};
 
 export function SettingsView({}: SettingsViewProps) {
-  const [settings, { mutate }] = useSettings();
-  const updateSettings = useUpdateSettings();
+  const [settings, { mutate }] = useGlobalSettings();
+  const updateSettings = useUpdateGlobalSettings();
 
   useDocumentTitle("Settings");
 

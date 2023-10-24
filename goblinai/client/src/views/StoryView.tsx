@@ -12,6 +12,8 @@ import { useStory } from "../hooks/useStory";
 import { Toolbar } from "../components/Toolbar";
 import { MessageStream } from "../components/MessageStream";
 import { useDeleteMessage } from "../hooks/useDeleteMessage";
+import { useStorySettings } from "../hooks/useStorySettings";
+import { useUpdateStorySettings } from "../hooks/useUpdateStorySettings";
 
 type StoryViewParams = {
   id: string;
@@ -23,6 +25,8 @@ export function StoryView() {
   const [story] = useStory(id);
   const [messages, { refetch: refetchMessages, mutate: mutateMessages }] =
     useMessages(id);
+  const [settings] = useStorySettings(id);
+  const updateSettings = useUpdateStorySettings(id);
   const generateMessage = useGenerateMessage(id);
   const deleteMessage = useDeleteMessage(id);
   const [stream, setStream] = createSignal<string>();
@@ -69,11 +73,19 @@ export function StoryView() {
         <Page class={style.content}>
           <div class={style.messages}>
             <For each={messages()}>
-              {(message) => <Message message={message} />}
+              {(message) => (
+                <Message
+                  message={message}
+                  paragraphStyle={settings()?.paragraphStyle}
+                />
+              )}
             </For>
 
             <Show when={stream()}>
-              <MessageStream stream={stream()} />
+              <MessageStream
+                stream={stream()}
+                paragraphStyle={settings()?.paragraphStyle}
+              />
             </Show>
           </div>
 

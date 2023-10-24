@@ -3,6 +3,7 @@ import { Message } from "./Message";
 
 type MessageStreamProps = {
   stream?: string;
+  paragraphStyle?: "indent" | "margin";
 };
 
 export function MessageStream(props: MessageStreamProps) {
@@ -12,5 +13,5 @@ export function MessageStream(props: MessageStreamProps) {
     content: props.stream ?? "",
   }));
 
-  return <Message message={message()} />;
+  return <Message paragraphStyle={props.paragraphStyle} message={message()} />;
 }
