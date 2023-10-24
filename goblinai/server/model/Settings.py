@@ -12,12 +12,10 @@ class Settings:
 
     def save(self):
         with open(settingsPath, "w") as file:
-            json.dump({
-                "paragraphStyle": self.paragraphStyle
-            }, file)
+            json.dump({"paragraphStyle": self.paragraphStyle}, file)
             file.close()
 
-    def merge(self, other: 'Settings') -> 'Settings':
+    def merge(self, other: "Settings") -> "Settings":
         updated_data = self.__dict__
         for field, value in other.__dict__.items():
             # If the value from `other` is not None, update it in the current object
@@ -26,13 +24,13 @@ class Settings:
         return Settings(**updated_data)
 
     @staticmethod
-    def load():
-        if not os.path.exists(settingsPath):
+    def load(path=settingsPath):
+        if not os.path.exists(path):
             settings = Settings()
             settings.save()
             return settings
 
-        with open(settingsPath, "r") as file:
+        with open(path, "r") as file:
             data = json.load(file)
             settings = Settings(**data)
             file.close()

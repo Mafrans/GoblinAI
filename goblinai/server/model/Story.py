@@ -34,12 +34,15 @@ class Story:
 
         os.makedirs(dirPath, exist_ok=True)
         with open(storyPath, "w") as file:
-            json.dump({
-                "id": self.id,
-                "name": self.name,
-                "createdAt": self.createdAt.isoformat(),
-                "editedAt": self.editedAt.isoformat(),
-            }, file)
+            json.dump(
+                {
+                    "id": self.id,
+                    "name": self.name,
+                    "createdAt": self.createdAt.isoformat(),
+                    "editedAt": self.editedAt.isoformat(),
+                },
+                file,
+            )
             file.close()
 
         with open(contentPath, "w") as file:
