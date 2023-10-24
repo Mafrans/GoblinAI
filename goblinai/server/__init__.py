@@ -19,7 +19,12 @@ corsHeaders = ["*"]
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173", f"http://localhost:{port}"],
+    allow_origins=[
+        "http://localhost:5173",
+        "http://127.0.0.1:5173",
+        f"http://localhost:{port}",
+        f"http://127.0.0.1:{port}",
+    ],
     allow_methods=corsMethods,
     allow_headers=corsHeaders,
 )
@@ -39,12 +44,14 @@ def start(mode: str):
             name="client",
         )
 
-    Process(target=lambda: uvicorn.run(
-        "goblinai.server:app",
-        port=port,
-        log_level="error",
-        reload=(mode == "development"),
-    )).start()
+    Process(
+        target=lambda: uvicorn.run(
+            "goblinai.server:app",
+            port=port,
+            log_level="error",
+            reload=(mode == "development"),
+        )
+    ).start()
 
     print(f"GoblinAI running on http://localhost:8000")
 
