@@ -2,8 +2,8 @@ from typing import Optional
 
 from pydantic import BaseModel
 
-from goblinai.server.model.Settings import Settings
+from goblinai.server.models.Settings import Settings
 
 
-class UpdateSettingsBody(BaseModel):
+class UpdateSettingsBodySchema(BaseModel):
     paragraphStyle: Optional[str] = None

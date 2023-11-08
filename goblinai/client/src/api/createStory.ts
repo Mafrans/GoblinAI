@@ -1,7 +1,7 @@
 import { Story } from "../types/Story";
-import { apiFetch } from "./useAPI";
+import { apiFetch } from "./api";
 
-export const useCreateStory = () => () =>
+export const createStory = () =>
   apiFetch<Story>("/stories/", {
     method: "POST",
   });

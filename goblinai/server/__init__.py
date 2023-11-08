@@ -6,7 +6,7 @@ from pathlib import Path
 from goblinai.server.SPAStaticFiles import SPAStaticFiles
 from goblinai.server.api.routes.settings import settings
 from goblinai.server.api.routes.stories import stories
-from goblinai.server.api.routes.messages import messages
+from goblinai.server.api.routes.content import content
 import ngrok
 import uvicorn
 
@@ -14,7 +14,7 @@ port = 8000
 app = FastAPI()
 faker = Faker()
 
-corsMethods = ["GET", "POST", "DELETE"]
+corsMethods = ["GET", "POST", "DELETE", "PATCH"]
 corsHeaders = ["*"]
 
 app.add_middleware(
@@ -30,7 +30,7 @@ app.add_middleware(
 )
 
 app.include_router(stories)
-app.include_router(messages)
+app.include_router(content)
 app.include_router(settings)
 
 

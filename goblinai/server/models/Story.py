@@ -5,7 +5,7 @@ import csv
 import shutil
 from faker import Faker
 from shortuuid import uuid
-from goblinai.server.model.Message import Message
+from goblinai.server.models.StoryContent import StoryContent
 
 fake = Faker()
 
@@ -21,16 +21,17 @@ class Story:
     name: str
     createdAt: datetime
     editedAt: datetime
-    _messages: list[Message] = []
+    content: StoryContent
 
     def __init__(self, name="Unnamed Story") -> None:
         self.id = uuid()
         self.name = name
         self.createdAt = datetime.now()
         self.editedAt = datetime.now()
+        self.content = StoryContent(self.getPath()[2])
 
     def save(self):
-        dirPath, storyPath, contentPath = self.getPath()
+        dirPath, storyPath, _ = self.getPath()
 
         os.makedirs(dirPath, exist_ok=True)
         with open(storyPath, "w") as file:
@@ -45,49 +46,27 @@ class Story:
             )
             file.close()
 
-        with open(contentPath, "w") as file:
-            file.truncate(0)
-            if len(self._messages) > 0:
-                writer = csv.writer(file, quoting=csv.QUOTE_ALL)
-                writer.writerows([[m.content, m.createdAt] for m in self._messages])
-
-            file.close()
+        self.content.save()
 
         pass
 
     def getPath(self):
         dirPath = os.path.join(savePath, self.id)
         storyPath = os.path.join(dirPath, "story.json")
-        contentPath = os.path.join(dirPath, "content.csv")
+        contentPath = os.path.join(dirPath, "content.txt")
         return dirPath, storyPath, contentPath
-
-    def getMessages(self):
-        if not self._messages:
-            _, _, contentPath = self.getPath()
-            if os.path.exists(contentPath):
-                with open(contentPath, "r") as file:
-                    reader = csv.reader(file, quoting=csv.QUOTE_ALL)
-                    self._messages = [Message(*r) for r in reader]
-                    file.close()
-
-        return self._messages
-
-    def addMessage(self, message: Message):
-        if not self._messages:
-            self.getMessages()
-
-        self.editedAt = datetime.now()
-        self._messages.append(message)
-
-    def deleteMessage(self, index: int):
-        if len(self._messages) == 0:
-            return
-
-        self._messages.pop(index)
 
     def delete(self):
         dirPath, _, _ = self.getPath()
         shutil.rmtree(dirPath)
+
+    def merge(self, other: "Story") -> "Story":
+        updated_data = self.__dict__
+        for field, value in other.__dict__.items():
+            # If the value from `other` is not None, update it in the current object
+            if value is not None:
+                updated_data[field] = value
+        return Story(**updated_data)
 
     @staticmethod
     def getById(id: str):
@@ -96,7 +75,7 @@ class Story:
 
         story = Story()
         story.id = id
-        _, storyPath, _ = story.getPath()
+        _, storyPath, contentPath = story.getPath()
 
         if not os.path.exists(storyPath):
             return None
@@ -108,6 +87,8 @@ class Story:
             story.createdAt = datetime.fromisoformat(data["createdAt"])
             story.editedAt = datetime.fromisoformat(data["editedAt"])
             file.close()
+
+        story.content = StoryContent.load(contentPath)
 
         storyCache[id] = story
         return story

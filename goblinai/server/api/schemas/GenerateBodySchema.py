@@ -1,5 +1,5 @@
 from pydantic import BaseModel
 
 
-class GenerateMessageBody(BaseModel):
+class GenerateBodySchema(BaseModel):
     startContent: str | None

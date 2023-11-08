@@ -1,9 +1,11 @@
 import os
 from fastapi import APIRouter
 
-from goblinai.server.model.Settings import Settings
-from goblinai.server.model.Story import Story
-from goblinai.server.model.UpdateSettingsBody import UpdateSettingsBody
+from goblinai.server.models.Settings import Settings
+from goblinai.server.models.Story import Story
+from goblinai.server.api.schemas.UpdateSettingsBodySchema import (
+    UpdateSettingsBodySchema,
+)
 
 settings = APIRouter(prefix="/api/settings")
 
@@ -14,7 +16,7 @@ def getSettings():
 
 
 @settings.post("/")
-def updateSettings(body: UpdateSettingsBody):
+def updateSettings(body: UpdateSettingsBodySchema):
     settings = Settings.load()
     settings.merge(body)
     settings.save()
@@ -28,7 +30,7 @@ def getStorySettings(storyId: str):
 
 
 @settings.post("/{storyId}/")
-def updateStorySettings(storyId: str, body: UpdateSettingsBody):
+def updateStorySettings(storyId: str, body: UpdateSettingsBodySchema):
     dir, _, _ = Story.getById(storyId).getPath()
     settings = Settings.load(os.path.join(dir, f"settings.json"))
     settings.merge(body)

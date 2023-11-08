@@ -1,15 +1,15 @@
-import { For, Show, Suspense, createEffect, createSignal } from "solid-js";
+import { For, Show, Suspense, createResource, createSignal } from "solid-js";
 import { Loader } from "./Loader";
 import { StoryListItem } from "./StoryListItem";
 import style from "./StoryList.module.css";
-import { useStories } from "../hooks/useStories";
 import { NewStoryButton } from "./NewStoryButton";
-import { useCreateStory } from "../hooks/useCreateStory";
 import { useNavigate } from "@solidjs/router";
-import { useDeleteStory } from "../hooks/useDeleteStory";
 import { Story } from "../types/Story";
 import { Button } from "./Button";
 import { Dialog } from "./Dialog";
+import { getStories } from "../api/getStories";
+import { createStory } from "../api/createStory";
+import { deleteStory } from "../api/deleteStory";
 
 type StoryListProps = {
   canCreateStory?: boolean;
@@ -17,12 +17,8 @@ type StoryListProps = {
 
 export function StoryList(props: StoryListProps) {
   const navigate = useNavigate();
-  const [stories, { mutate: setStories }] = useStories();
+  const [stories, { mutate: setStories }] = createResource(getStories);
   const [storyToDelete, setStoryToDelete] = createSignal<Story>();
-  const createStory = useCreateStory();
-  const deleteStory = useDeleteStory();
-
-  createEffect(() => console.log(storyToDelete()));
 
   async function handleCreateStory() {
     const story = await createStory();

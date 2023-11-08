@@ -1,5 +1,5 @@
 import { ParagraphStyle } from "./ParagraphStyle";
 
-export type Settings = {
+export type GlobalSettings = {
   paragraphStyle: ParagraphStyle;
 };

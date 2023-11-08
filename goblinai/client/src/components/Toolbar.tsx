@@ -1,44 +1,64 @@
-import {HiSolidArrowPath, HiSolidArrowRight} from "solid-icons/hi";
+import { HiSolidArrowRight } from "solid-icons/hi";
 import { Button } from "./Button";
 import style from "./Toolbar.module.css";
 import { TextArea } from "./TextArea";
+import { createEffect } from "solid-js";
+import { useStoryContext } from "../contexts/StoryContext";
 
 type ToolbarProps = {
-  onGenerate?: () => void;
-  onRegenerate?: () => void;
   disabled?: boolean;
-  ref?: HTMLTextAreaElement;
 };
 
 export function Toolbar(props: ToolbarProps) {
+  let textarea: HTMLTextAreaElement | undefined = undefined;
+  const [story, { generateText }] = useStoryContext();
+
+  createEffect((wasStreaming) => {
+    if (!wasStreaming && story.isStreaming) {
+      if (textarea) {
+        textarea.value = "";
+      }
+    }
+    return story.isStreaming;
+  });
+
   function handleKeyUp(event: KeyboardEvent) {
     // Handle keyboard submit
     if (event.ctrlKey && event.key === "Enter") {
-      props.onGenerate?.();
+      generateText();
       event.preventDefault();
     }
+  }
+
+  function handleSubmit(event: SubmitEvent) {
+    generateText();
+    event.preventDefault();
   }
 
   return (
     <form
       method="dialog"
       onKeyUp={handleKeyUp}
-      onSubmit={() => props.onGenerate?.()}
+      onSubmit={handleSubmit}
       class={style.toolbar}
     >
-      <TextArea ref={props.ref} disabled={props.disabled} autoresize />
+      <TextArea
+        ref={textarea}
+        disabled={props.disabled || story.isStreaming}
+        autoresize
+      />
       <Button
         type="submit"
         variant="primary"
-        disabled={props.disabled}
+        disabled={props.disabled || story.isStreaming}
         icon={HiSolidArrowRight}
       />
-      <Button
+      {/* <Button
         variant="secondary"
         disabled={props.disabled}
         onClick={() => props.onRegenerate?.()}
         icon={HiSolidArrowPath}
-      />
+      /> */}
     </form>
   );
 }
