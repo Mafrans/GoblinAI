@@ -1,4 +1,4 @@
-from goblinai.server import Generator
+from goblinai.server.generators.Generator import Generator
 
 
 class ContentGenerator(Generator):

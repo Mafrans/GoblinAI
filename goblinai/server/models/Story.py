@@ -3,6 +3,7 @@ import json
 import os
 import csv
 import shutil
+from typing import Any
 from faker import Faker
 from shortuuid import uuid
 from goblinai.server.models.StoryContent import StoryContent
@@ -13,7 +14,7 @@ savePath = os.path.join(os.curdir, "saves")
 os.makedirs(savePath, exist_ok=True)
 
 cachedStories = 5
-storyCache = {}
+storyCache: dict[str, "Story"] = {}
 
 
 class Story:
@@ -60,11 +61,10 @@ class Story:
         dirPath, _, _ = self.getPath()
         shutil.rmtree(dirPath)
 
-    def merge(self, other: "Story") -> "Story":
+    def merge(self, other: Any) -> "Story":
         updated_data = self.__dict__
         for field, value in other.__dict__.items():
-            # If the value from `other` is not None, update it in the current object
-            if value is not None:
+            if value is not None and field in updated_data:
                 updated_data[field] = value
         return Story(**updated_data)
 

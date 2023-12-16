@@ -4,8 +4,10 @@ import { createStore } from "solid-js/store";
 import { JSX } from "solid-js";
 import { updateStory } from "../api/updateStory";
 import { generate } from "../api/generate";
-import { getStory as getStory } from "../api/getStory";
+import { getStory } from "../api/getStory";
 import { getStoryContent } from "../api/getStoryContent";
+import { undo as apiUndo } from "../api/undo";
+import { redo as apiRedo } from "../api/redo";
 
 type State = Story & {
   content: string;
@@ -16,6 +18,8 @@ type State = Story & {
 type Actions = {
   setName: (name: string) => void;
   generateText: () => void;
+  undo: () => void;
+  redo: () => void;
 };
 
 type StoryProviderProps = {
@@ -34,7 +38,7 @@ const defaultState: State = {
 
 export const StoryContext = createContext<[State, Actions]>([
   defaultState,
-  { setName: () => {}, generateText: () => {} },
+  { setName: () => {}, generateText: () => {}, undo: () => {}, redo: () => {} },
 ]);
 
 export const useStoryContext = () => useContext(StoryContext);
@@ -62,23 +66,33 @@ export function StoryProvider(props: StoryProviderProps) {
   async function generateText() {
     const reader = await generate(props.id);
 
-    let stream = "";
     while (reader != null) {
-      const { value, done } = await reader.read();
+      const { value: stream, done } = await reader.read();
       if (done) break;
 
-      stream += value;
       setState({ stream });
     }
 
-    setState(({ content }) => ({
+    setState(({ content, stream }) => ({
       content: content + stream,
       stream: undefined,
     }));
   }
 
+  async function undo() {
+    const content = await apiUndo(props.id);
+    setState({ content });
+  }
+
+  async function redo() {
+    const content = await apiRedo(props.id);
+    setState({ content });
+  }
+
   return (
-    <StoryContext.Provider value={[state, { setName, generateText }]}>
+    <StoryContext.Provider
+      value={[state, { setName, generateText, undo, redo }]}
+    >
       {props.children}
     </StoryContext.Provider>
   );

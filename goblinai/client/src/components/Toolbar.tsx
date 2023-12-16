@@ -1,4 +1,8 @@
-import { HiSolidArrowRight } from "solid-icons/hi";
+import {
+  HiSolidArrowRight,
+  HiSolidArrowUturnLeft,
+  HiSolidArrowUturnRight,
+} from "solid-icons/hi";
 import { Button } from "./Button";
 import style from "./Toolbar.module.css";
 import { TextArea } from "./TextArea";
@@ -11,7 +15,7 @@ type ToolbarProps = {
 
 export function Toolbar(props: ToolbarProps) {
   let textarea: HTMLTextAreaElement | undefined = undefined;
-  const [story, { generateText }] = useStoryContext();
+  const [story, { generateText, undo, redo }] = useStoryContext();
 
   createEffect((wasStreaming) => {
     if (!wasStreaming && story.isStreaming) {
@@ -30,6 +34,20 @@ export function Toolbar(props: ToolbarProps) {
     }
   }
 
+  function handleUndo() {
+    undo();
+    if (textarea) {
+      textarea.value = "";
+    }
+  }
+
+  function handleRedo() {
+    redo();
+    if (textarea) {
+      textarea.value = "";
+    }
+  }
+
   function handleSubmit(event: SubmitEvent) {
     generateText();
     event.preventDefault();
@@ -42,6 +60,18 @@ export function Toolbar(props: ToolbarProps) {
       onSubmit={handleSubmit}
       class={style.toolbar}
     >
+      <Button
+        variant="secondary"
+        disabled={props.disabled}
+        onClick={handleUndo}
+        icon={HiSolidArrowUturnLeft}
+      />
+      <Button
+        variant="secondary"
+        disabled={props.disabled}
+        onClick={handleRedo}
+        icon={HiSolidArrowUturnRight}
+      />
       <TextArea
         ref={textarea}
         disabled={props.disabled || story.isStreaming}
@@ -53,12 +83,6 @@ export function Toolbar(props: ToolbarProps) {
         disabled={props.disabled || story.isStreaming}
         icon={HiSolidArrowRight}
       />
-      {/* <Button
-        variant="secondary"
-        disabled={props.disabled}
-        onClick={() => props.onRegenerate?.()}
-        icon={HiSolidArrowPath}
-      /> */}
     </form>
   );
 }

@@ -1,5 +1,6 @@
 import json
 import os
+from typing import Any
 
 settingsPath = os.path.join(os.curdir, "settings.json")
 
@@ -15,11 +16,10 @@ class Settings:
             json.dump({"paragraphStyle": self.paragraphStyle}, file)
             file.close()
 
-    def merge(self, other: "Settings") -> "Settings":
+    def merge(self, other: Any) -> "Settings":
         updated_data = self.__dict__
         for field, value in other.__dict__.items():
-            # If the value from `other` is not None, update it in the current object
-            if value is not None:
+            if value is not None and field in updated_data:
                 updated_data[field] = value
         return Settings(**updated_data)
 
