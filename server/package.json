@@ -1,0 +1,15 @@
+{
+  "name": "server",
+  "module": "index.ts",
+  "type": "module",
+  "scripts": {
+    "dev": "bun run --watch index.ts"
+  },
+  "dependencies": {
+    "goblinai": "workspace:*",
+    "@hocuspocus/provider": "^2.15.2",
+    "@hocuspocus/server": "^2.15.2",
+    "y-protocols": "^1.0.6",
+    "yjs": "^13.6.24"
+  }
+}
