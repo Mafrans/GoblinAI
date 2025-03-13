@@ -1,4 +1,6 @@
 {
   "name": "goblinai",
-  "type": "module"
+  "type": "module",
+  "types": "./index.ts",
+  "main": "./index.ts"
 }
