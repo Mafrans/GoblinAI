@@ -11,13 +11,15 @@ import { createStory, loadStory, saveStory } from "./story";
 import * as Y from "yjs";
 
 async function onLoadDocument(data: onLoadDocumentPayload) {
-  const story = await loadStory(data.documentName);
+  let story = openStories.get(data.documentName);
+  if (!story) story = await loadStory(data.documentName);
   if (!story) return;
 
   openStories.set(data.documentName, story);
 
-  if (story.content.byteLength !== 0)
+  if (story.content.byteLength !== 0) {
     Y.applyUpdate(data.document, story.content);
+  }
 }
 
 async function onStoreDocument({
