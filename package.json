@@ -15,6 +15,7 @@
     "server"
   ],
   "dependencies": {
-    "@hocuspocus/provider": "^2.15.2"
+    "@hocuspocus/provider": "^2.15.2",
+    "@ngneat/falso": "^7.3.0"
   }
 }

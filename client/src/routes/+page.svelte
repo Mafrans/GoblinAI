@@ -1,12 +1,8 @@
 <script lang="ts">
-  import { Editor } from "@tiptap/core";
   import { onDestroy, onMount } from "svelte";
-  import DocumentExtension from "@tiptap/extension-document";
-  import ParagraphExtension from "@tiptap/extension-paragraph";
-  import TextExtension from "@tiptap/extension-text";
-  import Collaboration from "@tiptap/extension-collaboration";
   import * as Y from "yjs";
   import { HocuspocusProvider } from "@hocuspocus/provider";
+  import { Editor } from "goblinai/tiptap";
 
   const doc = new Y.Doc();
 
@@ -17,21 +13,14 @@
   onMount(() => {
     editor = new Editor({
       element,
-      extensions: [
-        DocumentExtension,
-        ParagraphExtension,
-        TextExtension,
-        Collaboration.configure({
-          document: doc,
-        }),
-      ],
+      document: doc,
       onTransaction: () => {
         editor = editor;
       },
     });
 
     provider = new HocuspocusProvider({
-      name: "document.name",
+      name: "story1",
       url: "ws://127.0.0.1:1234",
       token: "notoken",
       document: doc,

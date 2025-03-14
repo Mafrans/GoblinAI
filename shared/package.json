@@ -2,5 +2,14 @@
   "name": "goblinai",
   "type": "module",
   "types": "./index.ts",
-  "main": "./index.ts"
+  "main": "./index.ts",
+  "dependencies": {
+    "@sinclair/typebox": "^0.34.30",
+    "dayjs": "^1.11.13",
+    "@tiptap/core": "^2.11.5",
+    "@tiptap/extension-document": "^2.11.5",
+    "@tiptap/extension-paragraph": "^2.11.5",
+    "@tiptap/extension-text": "^2.11.5",
+    "@hocuspocus/transformer": "^2.15.2"
+  }
 }
