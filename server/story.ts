@@ -4,19 +4,19 @@ import { StorySchema, type Story } from "goblinai/models/Story";
 import path from "node:path";
 import dayjs from "dayjs";
 import { randBook } from "@ngneat/falso";
+import { loadConfig } from "./config";
 
-const STORY_DIR = path.join(".", "story");
-
-function getStoryPath(id: string) {
-  return path.join(STORY_DIR, `${id}.json`);
+async function getStoryPath(id: string) {
+  const { story_dir } = await loadConfig();
+  return path.join(String(story_dir), `${id}.json`);
 }
 
-function getStoryFile(id: string) {
-  return Bun.file(getStoryPath(id));
+async function getStoryFile(id: string) {
+  return Bun.file(await getStoryPath(id));
 }
 
 export async function loadStory(id: string): Promise<Story | undefined> {
-  const file = getStoryFile(id);
+  const file = await getStoryFile(id);
 
   const exists = await file.exists();
   if (!exists) return undefined;
@@ -29,8 +29,8 @@ export async function loadStory(id: string): Promise<Story | undefined> {
 }
 
 export async function saveStory(story: Story): Promise<boolean> {
-  const storyPath = getStoryPath(story.id);
-  const file = getStoryFile(story.id);
+  const storyPath = await getStoryPath(story.id);
+  const file = await getStoryFile(story.id);
   const data = encodeStory(story);
 
   await mkdir(path.dirname(storyPath), { recursive: true });

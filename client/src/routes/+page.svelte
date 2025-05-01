@@ -33,3 +33,4 @@
 </script>
 
 <div bind:this={element}></div>
+<button type="button">Generate</button>

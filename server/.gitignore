@@ -1,5 +1,6 @@
 *.db
-/story
+/stories
+goblinai.toml
 
 
 # Based on https://raw.githubusercontent.com/github/gitignore/main/Node.gitignore
