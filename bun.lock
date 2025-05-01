@@ -50,6 +50,7 @@
         "@hocuspocus/transformer": "^2.15.2",
         "@sinclair/typebox": "^0.34.30",
         "@tiptap/core": "^2.11.5",
+        "@tiptap/extension-collaboration": "^2.11.9",
         "@tiptap/extension-document": "^2.11.5",
         "@tiptap/extension-paragraph": "^2.11.5",
         "@tiptap/extension-text": "^2.11.5",
@@ -207,6 +208,8 @@
     "@tiptap/extension-code": ["@tiptap/extension-code@2.11.5", "", { "peerDependencies": { "@tiptap/core": "^2.7.0" } }, "sha512-xOvHevNIQIcCCVn9tpvXa1wBp0wHN/2umbAZGTVzS+AQtM7BTo0tz8IyzwxkcZJaImONcUVYLOLzt2AgW1LltA=="],
 
     "@tiptap/extension-code-block": ["@tiptap/extension-code-block@2.11.5", "", { "peerDependencies": { "@tiptap/core": "^2.7.0", "@tiptap/pm": "^2.7.0" } }, "sha512-ksxMMvqLDlC+ftcQLynqZMdlJT1iHYZorXsXw/n+wuRd7YElkRkd6YWUX/Pq/njFY6lDjKiqFLEXBJB8nrzzBA=="],
+
+    "@tiptap/extension-collaboration": ["@tiptap/extension-collaboration@2.11.9", "", { "peerDependencies": { "@tiptap/core": "^2.7.0", "@tiptap/pm": "^2.7.0", "y-prosemirror": "^1.2.11" } }, "sha512-om2oCEta3iaCc7xt69gNeR7zPC/K/O48upWeKxwXHd5jeBWLl5GYTAC4hiXN/GyrqzHAVHuWBPlyvanKDW4l7g=="],
 
     "@tiptap/extension-document": ["@tiptap/extension-document@2.11.5", "", { "peerDependencies": { "@tiptap/core": "^2.7.0" } }, "sha512-7I4BRTpIux2a0O2qS3BDmyZ5LGp3pszKbix32CmeVh7lN9dV7W5reDqtJJ9FCZEEF+pZ6e1/DQA362dflwZw2g=="],
 
