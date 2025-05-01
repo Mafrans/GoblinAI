@@ -32,6 +32,7 @@ export async function loadConfig() {
 
   const file = getConfigFile();
   await tryGenerateDefaultConfig();
+  console.log(toml.parse(await file.text()));
   return parseConfig(toml.parse(await file.text()));
 }
 
