@@ -2,6 +2,7 @@ import {
   type EditorOptions as TiptapEditorOptions,
   type Extensions,
   Editor as TiptapEditor,
+  Node,
 } from "@tiptap/core";
 import DocumentExtension from "@tiptap/extension-document";
 import ParagraphExtension from "@tiptap/extension-paragraph";
@@ -9,6 +10,7 @@ import TextExtension from "@tiptap/extension-text";
 import Collaboration from "@tiptap/extension-collaboration";
 import { Tiptap } from "@hocuspocus/transformer";
 import type { Doc } from "yjs";
+import * as JSDOM from "jsdom";
 
 const defaultExtensions = [
   DocumentExtension,

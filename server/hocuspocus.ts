@@ -9,6 +9,7 @@ import { debounce } from "goblinai/util";
 import { openStories } from ".";
 import { createStory, loadStory, saveStory } from "./story";
 import * as Y from "yjs";
+import { HocuspocusProvider } from "@hocuspocus/provider";
 
 async function onLoadDocument(data: onLoadDocumentPayload) {
   let story = openStories.get(data.documentName);
@@ -49,7 +50,7 @@ async function onChange({ update, documentName }: onChangePayload) {
 
 const onChangeDebounced = debounce(onChange, 1000);
 
-const hocuspocus = new Hocuspocus({
+export const hocuspocus = new Hocuspocus({
   port: 1234,
   async onAuthenticate({ token }) {
     return {

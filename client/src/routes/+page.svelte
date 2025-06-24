@@ -10,11 +10,25 @@
   let editor: Editor | undefined = undefined;
   let element: Element | undefined = undefined;
 
+  async function handleGenerate() {
+    const res = await fetch(`http://localhost:3000/story/story1/generate`, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+      method: "POST",
+    });
+
+    if (!res.ok) {
+      console.error(await res.json());
+    }
+    console.log(await res.json());
+  }
+
   onMount(() => {
     editor = new Editor({
       element,
       document: doc,
-      onTransaction: () => {
+      onTransaction: ({ transaction }) => {
         editor = editor;
       },
     });
@@ -33,4 +47,4 @@
 </script>
 
 <div bind:this={element}></div>
-<button type="button">Generate</button>
+<button type="button" on:click={handleGenerate}>Generate</button>

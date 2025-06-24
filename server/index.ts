@@ -4,15 +4,9 @@ import { randBook } from "@ngneat/falso";
 import { createStory, saveStory } from "./story";
 import { loadConfig } from "./config";
 import { createOpenAIClient } from "./openai";
+import { startAPI } from "./api";
 
 export const openStories = new Map<string, Story>();
 
-const openai = await createOpenAIClient();
-
-const story = createStory({
-  id: "story1",
-  title: "Story 1",
-});
-saveStory(story);
-
 startHocuspocus();
+startAPI();

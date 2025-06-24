@@ -11,6 +11,10 @@
     "@tiptap/extension-document": "^2.11.5",
     "@tiptap/extension-paragraph": "^2.11.5",
     "@tiptap/extension-text": "^2.11.5",
-    "dayjs": "^1.11.13"
+    "dayjs": "^1.11.13",
+    "jsdom": "^26.1.0"
+  },
+  "devDependencies": {
+    "@types/jsdom": "^21.1.7"
   }
 }
